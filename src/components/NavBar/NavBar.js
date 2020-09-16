@@ -13,7 +13,6 @@ export default class NavBar extends Component {
                 </h3>
                 <ul>
                     <Link to='/map' style={{ textDecoration: 'none' }}><li className='nav-bar'>Map</li></Link>
-                    <Link to='/search' style={{ textDecoration: 'none' }}><li className='nav-bar'>Search</li></Link>
                     <Link to='/register' style={{ textDecoration: 'none' }}><li className='nav-bar'>Register</li></Link>
                     <Link to='/login' style={{ textDecoration: 'none' }}><li className='nav-bar'>Log In</li></Link>
                 </ul>
