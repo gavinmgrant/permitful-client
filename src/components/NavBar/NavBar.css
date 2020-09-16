@@ -1,0 +1,47 @@
+nav {
+    position: sticky;
+    top: 0;
+    left: 0;
+    right: 0;
+    color: #ffffff;
+    background-color: #777;
+    margin: 0;
+    padding: 20px;
+}
+
+ul {
+    display: inline;
+    list-style: none;
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    display: inline;
+    padding: 5px;
+}
+
+.logo {
+    text-decoration: none;
+    padding: 10px;
+}
+
+.logo:visited {
+    color: #ffffff;
+}
+
+.nav-bar,
+.nav-bar:visited {
+    color: #ffffff;
+}
+
+@media screen and (min-width: 800px) {
+    nav {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    li {
+        padding: 10px;
+    }
+}
