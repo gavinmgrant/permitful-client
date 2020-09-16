@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { GoogleMap, LoadScript } from '@react-google-maps/api';
+import { mapStyle } from './MapStyle';
 
 const containerStyle = {
   width: '100%',
@@ -11,6 +12,10 @@ const center = {
   lng: -122.431297
 };
 
+const options = {
+  styles: mapStyle
+}
+
 export default class PermitMap extends Component {
   render() {
     return (
@@ -21,6 +26,7 @@ export default class PermitMap extends Component {
           mapContainerStyle={containerStyle}
           center={center}
           zoom={11}
+          options={options}
         >
           { /* Child components, such as markers, info windows, etc. */ }
           <></>

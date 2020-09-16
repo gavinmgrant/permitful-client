@@ -4,7 +4,7 @@ import './RegistrationForm.css';
 export default class RegistrationForm extends Component {
     render() {
         return (
-            <section>
+            <section className="registration-container">
                 <h2>Register</h2>
                 <form>
                     <section className="registration-form">

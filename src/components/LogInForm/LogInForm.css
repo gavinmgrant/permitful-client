@@ -1,11 +1,4 @@
-input {
-    width: 100%;
-    margin-bottom: 20px;
-    padding: 10px;
-    font-size: 18px;
-}
-
-.registration-form {
+.login-form {
     margin: 10px 50px 10px 50px;
     text-align: left;
     width: 80%;
@@ -13,10 +6,10 @@ input {
     margin-right: auto;
 }
 
-.registration-container {
+.login-container {
     margin: 50px;
 }
 
-.registration-button {
+.login-button {
     margin-bottom: 50px;
 }
