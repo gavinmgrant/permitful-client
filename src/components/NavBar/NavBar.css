@@ -9,6 +9,10 @@ nav {
     padding: 20px;
 }
 
+li:hover {
+    border-bottom: 2px solid #ffffff;
+}
+
 ul {
     display: inline;
     list-style: none;
