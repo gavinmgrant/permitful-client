@@ -37,9 +37,14 @@ button {
   margin-top: 10px;
 }
 
+input {
+  width: 100%;
+  padding: 10px;
+  font-size: 18px;
+}
+
 select {
-  width: 30%;
-  margin-bottom: 20px;
+  width: 40%;
   padding: 10px;
   font-size: 18px;
 }

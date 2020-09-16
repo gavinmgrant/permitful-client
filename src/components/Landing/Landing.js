@@ -25,7 +25,7 @@ class Landing extends Component {
         <section className='landing-sections'>
           <h2>Search for building permits</h2>
           <p>Do you have a specific property address in mind? Enter an address and find any open or previously approved building permits for that property.</p>
-          <Link to='/search'>
+          <Link to='/map'>
             <button>
               Start your search
             </button>
