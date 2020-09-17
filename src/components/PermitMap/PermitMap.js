@@ -20,8 +20,7 @@ const center = {
 
 const options = {
   styles: mapStyle,
-  disableDefaultUI: true,
-  zoomControl: true
+  disableDefaultUI: true
 }
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
@@ -51,10 +50,10 @@ export default function PermitMap() {
   }, []);
 
   const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
-  const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=15&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
+  const limit = 150;
+  const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=" + limit + "&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
   const { data, error } = useSWR(url, {fetcher});
   const permits = data && !error ? data  : [];
-  console.log(data);
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -70,22 +69,24 @@ export default function PermitMap() {
         onLoad={onMapLoad}
       >
         {permits.map(permit => (
-          <Marker 
-            key={permit.record_id}
-            clickable={true}
-            onClick={() => {
-              setPermitNumber(permit.permit_number);
-              setStreetNumber(permit.street_number);
-              setStreetName(permit.street_name);
-              setStreetSuffix(permit.street_suffix);
-              setUnitNumber(permit.unit);
-              setPermitDescription(permit.description);
-              setStatusDate(permit.status_date);
-            }}
-            position={{ lat: parseFloat(permit.location.latitude),
-              lng: parseFloat(permit.location.longitude) }} 
-          >
-          </Marker>
+          permit.location
+          ? (
+            <Marker 
+              key={permit.record_id}
+              clickable={true}
+              onClick={() => {
+                setPermitNumber(permit.permit_number);
+                setStreetNumber(permit.street_number);
+                setStreetName(permit.street_name);
+                setStreetSuffix(permit.street_suffix);
+                setUnitNumber(permit.unit);
+                setPermitDescription(permit.description);
+                setStatusDate(permit.status_date);
+              }}
+              position={{ lat: parseFloat(permit.location.latitude),
+                lng: parseFloat(permit.location.longitude) }} 
+            />
+          ) : ''
         ))}
       </GoogleMap>
       <ResultsBar 

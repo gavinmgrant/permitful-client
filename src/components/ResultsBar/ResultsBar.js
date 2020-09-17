@@ -7,7 +7,7 @@ export default function ResultsBar(props) {
 
     return (
         <section className="results-bar">
-            <h3>{props.streetNumber} {props.streetName} {props.streetSuffix} {props.unitNumber}</h3>
+            <h2>{props.streetNumber} {props.streetName} {props.streetSuffix} {props.unitNumber}</h2>
             <p>Status Date: {formattedDate}</p>
             <p>Permit Number: {props.permitNumber}</p>
             <p>Description: {props.permitDescription}</p>
