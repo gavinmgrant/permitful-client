@@ -1,6 +1,7 @@
 * {
   box-sizing: border-box;
   margin: 0;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 html {
@@ -11,12 +12,8 @@ html {
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  font-family: "Open Sans", sans-serif; 
   font-size: 18px;
   color: #444444;
   background-color: white;
@@ -37,12 +34,14 @@ button {
   font-size: 18px;
   padding: 10px;
   margin-top: 10px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 input {
   width: 100%;
   padding: 10px;
   font-size: 18px;
+  font-family: 'Roboto Condensed', sans-serif;
 }
 
 select {
@@ -56,7 +55,8 @@ button:hover {
 }
 
 h1 {
-  font-size: 56px;
+  font-size: 60px;
+  font-family: 'Quicksand', sans-serif;
 }
 
 .input-typ {
