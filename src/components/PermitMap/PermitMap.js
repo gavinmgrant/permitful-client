@@ -31,6 +31,7 @@ export default function PermitMap() {
   const [streetNumber, setStreetNumber] = useState('Select a recent permit.');
   const [streetName, setStreetName] = useState(' ');
   const [streetSuffix, setStreetSuffix] = useState(' ');
+  const [unitNumber, setUnitNumber] = useState(' ');
   const [permitDescription, setPermitDescription] = useState(' ');
   const [statusDate, setStatusDate] = useState('TBD');
 
@@ -77,6 +78,7 @@ export default function PermitMap() {
               setStreetNumber(permit.street_number);
               setStreetName(permit.street_name);
               setStreetSuffix(permit.street_suffix);
+              setUnitNumber(permit.unit);
               setPermitDescription(permit.description);
               setStatusDate(permit.status_date);
             }}
@@ -91,6 +93,7 @@ export default function PermitMap() {
         streetNumber={streetNumber}
         streetName={streetName}
         streetSuffix={streetSuffix}
+        unitNumber={unitNumber}
         permitDescription={permitDescription}
         statusDate={statusDate}
       />
