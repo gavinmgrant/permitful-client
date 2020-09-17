@@ -1,13 +1,17 @@
 .search {
+    width: 100%;
+    background: none;
+}
+
+.search-input {
     position: fixed;
     margin-left: auto;
     margin-right: auto;
+    width: 80%;
     margin-top: 10px;
     left: 0;
     right: 0;
-    width: 80%;
     z-index: 10;
-    background: none;
 }
 
 .search input {
@@ -17,8 +21,18 @@
     border-radius: 25px;
 }
 
+.to-results {
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 40px;
+    left: 0;
+    right: 0;
+    z-index: 10;
+}
+
 @media screen and (min-width: 800px) {
-    .search {
+    .search-input {
         width: 600px;
     }
 }
