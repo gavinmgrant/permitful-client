@@ -12,7 +12,7 @@ import './App.css';
 class App extends Component {
   render() {
     return (
-      <main className='App'>
+      <main className='app'>
         <NavBar />
         <Switch>
           <Route exact path='/' component={Landing} />

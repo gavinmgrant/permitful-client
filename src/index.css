@@ -5,6 +5,8 @@
 
 html {
   background-color: #999;
+  margin: 0;
+  height: 100%;
 }
 
 body {
@@ -15,7 +17,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-family: "Open Sans", sans-serif; 
-  font-size: 20px;
+  font-size: 18px;
   color: #444;
   background-color: white;
   text-align: center;

@@ -1,15 +1,17 @@
 .search {
-    position: absolute;
-    top: 7.5rem;
-    left: 50%;
-    transform: translateX(-50%);
+    position: fixed;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    left: 0;
+    right: 0;
     width: 80%;
     z-index: 10;
+    background: none;
 }
 
 .search input {
     padding: 0.5rem;
-    width: 100%;
     height: 50px;
     border: 2px solid #999999;
     border-radius: 25px;
@@ -17,7 +19,6 @@
 
 @media screen and (min-width: 800px) {
     .search {
-        top: 5.5rem;
-        width: 60%;
+        width: 600px;
     }
 }

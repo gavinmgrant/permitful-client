@@ -1,13 +1,16 @@
-import React from 'react';
-import { useLoadScript, GoogleMap } from '@react-google-maps/api';
+import React, { useState } from 'react';
+import { Marker, useLoadScript, GoogleMap } from '@react-google-maps/api';
+import useSWR from "swr";
 import { mapStyle } from './MapStyle';
 import SearchBar from '../SearchBar/SearchBar';
+import fetch from 'unfetch';
+import ResultsBar from '../ResultsBar/ResultsBar';
 import '@reach/combobox/styles.css';
 
 const libraries = ["places"];
 const containerStyle = {
   width: '100%',
-  height: '100vh'
+  height: '75vh'
 };
 
 const center = {
@@ -21,11 +24,21 @@ const options = {
   zoomControl: true
 }
 
+const fetcher = (...args) => fetch(...args).then(response => response.json());
+
 export default function PermitMap() {
+  const [permitNumber, setPermitNumber] = useState('TBD');
+  const [streetNumber, setStreetNumber] = useState('Select a recent permit.');
+  const [streetName, setStreetName] = useState(' ');
+  const [streetSuffix, setStreetSuffix] = useState(' ');
+  const [permitDescription, setPermitDescription] = useState(' ');
+  const [statusDate, setStatusDate] = useState('TBD');
+
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
-  });    
+  });
+
   const mapRef = React.useRef();
     const onMapLoad = React.useCallback((map) => {
       mapRef.current = map;
@@ -35,6 +48,12 @@ export default function PermitMap() {
     mapRef.current.panTo({ lat, lng });
     mapRef.current.setZoom(16);
   }, []);
+
+  const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
+  const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=15&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
+  const { data, error } = useSWR(url, {fetcher});
+  const permits = data && !error ? data  : [];
+  console.log(data);
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
@@ -49,7 +68,32 @@ export default function PermitMap() {
         options={options}
         onLoad={onMapLoad}
       >
+        {permits.map(permit => (
+          <Marker 
+            key={permit.record_id}
+            clickable={true}
+            onClick={() => {
+              setPermitNumber(permit.permit_number);
+              setStreetNumber(permit.street_number);
+              setStreetName(permit.street_name);
+              setStreetSuffix(permit.street_suffix);
+              setPermitDescription(permit.description);
+              setStatusDate(permit.status_date);
+            }}
+            position={{ lat: parseFloat(permit.location.latitude),
+              lng: parseFloat(permit.location.longitude) }} 
+          >
+          </Marker>
+        ))}
       </GoogleMap>
+      <ResultsBar 
+        permitNumber={permitNumber} 
+        streetNumber={streetNumber}
+        streetName={streetName}
+        streetSuffix={streetSuffix}
+        permitDescription={permitDescription}
+        statusDate={statusDate}
+      />
     </div>
   );
 }
