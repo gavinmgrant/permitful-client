@@ -7,9 +7,16 @@
 }
 
 .login-container {
-    margin: 50px;
+    margin: 30px;
 }
 
 .login-button {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 800px) {
+    .login-container {
+        margin: 60px;
+        padding: 30px;
+    }
 }

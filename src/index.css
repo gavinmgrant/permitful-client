@@ -4,7 +4,7 @@
 }
 
 html {
-  background-color: #999;
+  background-color: #999999;
   margin: 0;
   height: 100%;
 }
@@ -18,12 +18,12 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: "Open Sans", sans-serif; 
   font-size: 18px;
-  color: #444;
+  color: #444444;
   background-color: white;
   text-align: center;
   line-height: 1.5;
   width: 800px;
-  max-width: 90%;
+  max-width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
@@ -57,4 +57,8 @@ button:hover {
 
 h1 {
   font-size: 56px;
+}
+
+.input-typ {
+  margin: 0 0 20px 0;
 }

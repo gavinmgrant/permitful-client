@@ -7,9 +7,16 @@
 }
 
 .registration-container {
-    margin: 50px;
+    margin: 30px;
 }
 
 .registration-button {
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+}
+
+@media screen and (min-width: 800px) {
+    .registration-container {
+        margin: 60px;
+        padding: 30px;
+    }
 }

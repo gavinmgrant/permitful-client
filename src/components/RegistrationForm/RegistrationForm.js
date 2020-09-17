@@ -10,22 +10,22 @@ export default class RegistrationForm extends Component {
                     <section className="registration-form">
                         <div>
                             <label htmlFor="first-name">First name</label>
-                            <input placeholder='your first name' type="text" name='first-name' id='first-name' />
+                            <input className="input-typ" type="text" name="first-name" id="first-name" placeholder="your first name" />
                         </div>
                         <div>
                             <label htmlFor="last-name">Last name</label>
-                            <input type="text" name='last-name' id='last-name' placeholder='your last name' />
+                            <input className="input-typ" type="text" name="last-name" id="last-name" placeholder="your last name" />
                         </div>
                         <div>
                             <label htmlFor="username">Email</label>
-                            <input type="text" name='username' id='username' placeholder='your email address' />
+                            <input className="input-typ" type="text" name="username" id="username" placeholder="your email address" />
                         </div>
                         <div>
                             <label htmlFor="password">Password</label>
-                            <input type="password" name='password' id='password' placeholder='enter a password'/>
+                            <input className="input-typ" type="password" name="password" id="password" placeholder="enter a password" />
                         </div> 
                     </section>
-                    <button type='submit' className='registration-button'>Submit</button>
+                    <button type='submit' className="registration-button">Submit</button>
                 </form>
             </section>
         )
