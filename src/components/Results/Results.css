@@ -1,0 +1,25 @@
+.results {
+    position: relative;
+    margin: 0 0 0 0;
+    width: 100%;
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px;
+    z-index: 16;
+}
+
+.results-item {
+    margin: 15px;
+}
+
+.results-details {
+    margin: 20px;
+    padding: 20px;
+    background-color: #555555;
+}
+
+@media screen and (min-width: 800px) {
+    .results {
+        width: 800px;
+    }
+}

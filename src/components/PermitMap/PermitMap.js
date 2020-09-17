@@ -3,14 +3,13 @@ import { Marker, useLoadScript, GoogleMap } from '@react-google-maps/api';
 import useSWR from "swr";
 import { mapStyle } from './MapStyle';
 import SearchBar from '../SearchBar/SearchBar';
-import fetch from 'unfetch';
-import ResultsBar from '../ResultsBar/ResultsBar';
+import Details from '../Details/Details';
 import '@reach/combobox/styles.css';
 
 const libraries = ["places"];
 const containerStyle = {
   width: '100%',
-  height: '75vh'
+  height: '90vh'
 };
 
 const center = {
@@ -26,13 +25,14 @@ const options = {
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 export default function PermitMap() {
-  const [permitNumber, setPermitNumber] = useState('TBD');
-  const [streetNumber, setStreetNumber] = useState('Select a recent permit.');
-  const [streetName, setStreetName] = useState(' ');
-  const [streetSuffix, setStreetSuffix] = useState(' ');
-  const [unitNumber, setUnitNumber] = useState(' ');
-  const [permitDescription, setPermitDescription] = useState(' ');
-  const [statusDate, setStatusDate] = useState('TBD');
+  const [permitNumber, setPermitNumber] = useState('');
+  const [streetNumber, setStreetNumber] = useState('');
+  const [streetName, setStreetName] = useState('');
+  const [streetSuffix, setStreetSuffix] = useState('');
+  const [unitNumber, setUnitNumber] = useState('');
+  const [permitDescription, setPermitDescription] = useState('');
+  const [statusDate, setStatusDate] = useState('');
+  const [permitStatus, setPermitStatus] = useState('');
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -50,17 +50,20 @@ export default function PermitMap() {
   }, []);
 
   const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
-  const limit = 150;
+
+  const limit = 200;
   const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=" + limit + "&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
-  const { data, error } = useSWR(url, {fetcher});
-  const permits = data && !error ? data  : [];
+  const { data, error } = useSWR(url, fetcher);
+  const permits = data && !error ? data : [];
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
     <div>
-      <SearchBar getPanTo={panTo}/>
+      <SearchBar 
+        getPanTo={panTo}
+      />
       <GoogleMap
         mapContainerStyle={containerStyle}
         center={center}
@@ -82,6 +85,7 @@ export default function PermitMap() {
                 setUnitNumber(permit.unit);
                 setPermitDescription(permit.description);
                 setStatusDate(permit.status_date);
+                setPermitStatus(permit.status);
               }}
               position={{ lat: parseFloat(permit.location.latitude),
                 lng: parseFloat(permit.location.longitude) }} 
@@ -89,7 +93,8 @@ export default function PermitMap() {
           ) : ''
         ))}
       </GoogleMap>
-      <ResultsBar 
+      {}
+      <Details
         permitNumber={permitNumber} 
         streetNumber={streetNumber}
         streetName={streetName}
@@ -97,6 +102,7 @@ export default function PermitMap() {
         unitNumber={unitNumber}
         permitDescription={permitDescription}
         statusDate={statusDate}
+        permitStatus={permitStatus}
       />
     </div>
   );

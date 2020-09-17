@@ -19,6 +19,7 @@ ul {
     list-style: none;
     list-style-type: none;
     padding: 0;
+    margin: 2px 0 0 0;
 }
 
 li {
@@ -41,16 +42,14 @@ li {
     color: #ffffff;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 400px) {
     nav {
         display: flex;
         justify-content: space-between;
     }
+}
 
-    ul {
-        margin-top: 3px;
-    }
-
+@media screen and (min-width: 800px) {
     li {
         padding: 10px;
     }

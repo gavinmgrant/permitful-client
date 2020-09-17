@@ -24,7 +24,7 @@ class Landing extends Component {
 
         <section className='landing-sections'>
           <h2>Search for building permits</h2>
-          <p>Do you have a specific property address in mind? Enter an address and find any open or previously approved building permits for that property.</p>
+          <p>Do you have a specific property address in mind? Enter an address and find any open or previously approved building permits on file for that property.</p>
           <Link to='/map'>
             <button>
               Start your search
@@ -33,13 +33,13 @@ class Landing extends Component {
         </section>
 
         <section className='landing-sections'>
-          <h2>Property details</h2>
+          <h2>Permit details</h2>
           <p>Once you have found a property, you can dig into its details. The property details lists any building permits and tells you their status, such as open, completed, or expired. A description of each permit will tell you the scope of work.</p>
         </section>
 
         <section className='landing-sections'>
           <h2>Your favorites</h2>
-          <p>Registered users can select their favorite properties and quickly retrieve them later. Save time and register below.</p>
+          <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
         </section>
 
         <RegistrationForm />

@@ -1,6 +1,13 @@
 footer {
+    display: none;
     color: #ffffff;
     background-color: #777;
     margin: 0;
     padding: 20px;
+}
+
+@media screen and (min-width: 800px) {
+    footer {
+        display: block;
+    }
 }
