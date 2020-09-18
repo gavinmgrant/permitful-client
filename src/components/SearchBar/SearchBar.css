@@ -5,20 +5,32 @@
 
 .search-input {
     position: fixed;
-    margin-left: auto;
+    margin-left: 10px;
     margin-right: auto;
-    width: 80%;
+    width: 60%;
     margin-top: 10px;
     left: 0;
     right: 0;
     z-index: 10;
 }
 
-.search input {
+.search input,
+.limit-input input {
     padding: 0.5rem;
     height: 50px;
     border: 2px solid #777777;
     border-radius: 25px;
+}
+
+.limit-input {
+    position: fixed;
+    margin-left: auto;
+    margin-right: 10px;
+    width: 30%;
+    margin-top: 10px;
+    left: 0;
+    right: 0;
+    z-index: 10;
 }
 
 .to-results {
@@ -33,6 +45,14 @@
 
 @media screen and (min-width: 800px) {
     .search-input {
-        width: 600px;
+        margin-left: auto;
+        width: 500px;
+        right: 210px;
+    }
+
+    .limit-input {
+        margin-right: auto;
+        width: 200px;
+        left: 510px;
     }
 }
