@@ -60,6 +60,14 @@ h1 {
   font-family: 'Quicksand', sans-serif;
 }
 
+a {
+  color: #111111;
+}
+
+a:visited {
+  color: #444444;
+}
+
 .input-typ {
   margin: 0 0 20px 0;
 }
