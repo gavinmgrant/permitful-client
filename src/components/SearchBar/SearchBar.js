@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import usePlacesAutoComplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from '@reach/combobox';
 import Results from '../Results/Results';
@@ -15,6 +15,10 @@ export default function SearchBar(props) {
 
   const panTo = props.getPanTo;
   const [searchAddress, setSearchAddress] = useState('');
+  const handleAdd = props.handleAddress;
+  useEffect(() => {
+    handleAdd(searchAddress);
+  }, [searchAddress, handleAdd]);
 
   return (
     <div className="search">
@@ -45,8 +49,8 @@ export default function SearchBar(props) {
           <ComboboxPopover>
             <ComboboxList>
               {status === "OK" && 
-                data.map(({ id, description }) => (
-                  <ComboboxOption key={id} value={description} /> 
+                data.map(({ description }) => (
+                  <ComboboxOption key={description} value={description} /> 
                 ))}
             </ComboboxList>
           </ComboboxPopover>

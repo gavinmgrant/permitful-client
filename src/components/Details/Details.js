@@ -9,13 +9,15 @@ export default function Details(props) {
         <section className="details">
             <h2>{props.streetNumber} {props.streetName} {props.streetSuffix} {props.unitNumber}</h2>
             {formattedDate === '' ? (
-                <p>The markers above represent the 200 most recently created permits in San Francisco. Click on one for details.</p>
+                <p>The markers above represent the most recently created permits in San Francisco. Click one for details.</p>
             ) : (
                 <div>
-                    <p>Status Date: {formattedDate}</p>
-                    <p>Permit Number: {props.permitNumber}</p>
-                    <p>Permit Status: {props.permitStatus}</p>
-                    <p>Description: {props.permitDescription}</p>
+                    <div className="details-block">
+                        <p><span className="underline">Status Date:</span> {formattedDate}</p>
+                        <p><span className="underline">Permit Number:</span> {props.permitNumber}</p>
+                        <p><span className="underline">Permit Status:</span> {props.permitStatus}</p>
+                        <p><span className="underline">Description:</span> {props.permitDescription}</p>
+                    </div>
                 </div>
             )}
         </section>
