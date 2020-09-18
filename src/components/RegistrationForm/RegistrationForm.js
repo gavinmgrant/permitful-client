@@ -5,18 +5,11 @@ export default function RegistrationForm() {
     return (
         <section className="registration-container">
             <h2>Register</h2>
+            <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
             <form>
                 <section className="registration-form">
                     <div>
-                        <label htmlFor="first-name">First name</label>
-                        <input className="input-typ" type="text" name="first-name" id="first-name" placeholder="your first name" />
-                    </div>
-                    <div>
-                        <label htmlFor="last-name">Last name</label>
-                        <input className="input-typ" type="text" name="last-name" id="last-name" placeholder="your last name" />
-                    </div>
-                    <div>
-                        <label htmlFor="username">Email</label>
+                        <label htmlFor="username">Email/Username</label>
                         <input className="input-typ" type="text" name="username" id="username" placeholder="your email address" />
                     </div>
                     <div>
