@@ -54,7 +54,6 @@ export default function PermitMap() {
   const handleMarkerLimit = useCallback(markerState => {
     setMarkerLimit(markerState);
   }, []);
-  console.log('map limit: ', markerLimit);
 
   const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
 
@@ -68,7 +67,7 @@ export default function PermitMap() {
     setSearchAddress(addressState);
   }, []);
 
-  // if click outside of marker, set detail area to default
+  // if click outside of marker, set detail area (controlled by the status date) to default
   const handleClick = () => setStatusDate('');
   
   if (loadError) return "Error";
@@ -92,22 +91,24 @@ export default function PermitMap() {
         {permits.map(permit => (
           permit.location
           ? (
-            <Marker 
-              key={permit.record_id}
-              clickable={true}
-              onClick={() => {
-                setPermitNumber(permit.permit_number);
-                setStreetNumber(permit.street_number);
-                setStreetName(permit.street_name);
-                setStreetSuffix(permit.street_suffix);
-                setUnitNumber(permit.unit);
-                setPermitDescription(permit.description);
-                setStatusDate(permit.status_date);
-                setPermitStatus(permit.status);
-              }}
-              position={{ lat: parseFloat(permit.location.latitude),
-                lng: parseFloat(permit.location.longitude) }} 
-            />
+              <div>
+                <Marker 
+                  key={permit.record_id}
+                  clickable={true}
+                  onClick={() => {
+                    setPermitNumber(permit.permit_number);
+                    setStreetNumber(permit.street_number);
+                    setStreetName(permit.street_name);
+                    setStreetSuffix(permit.street_suffix);
+                    setUnitNumber(permit.unit);
+                    setPermitDescription(permit.description);
+                    setStatusDate(permit.status_date);
+                    setPermitStatus(permit.status);
+                  }}
+                  position={{ lat: parseFloat(permit.location.latitude),
+                    lng: parseFloat(permit.location.longitude) }} 
+                />
+              </div>
           ) : ''
         ))}
       </GoogleMap> : ''}
