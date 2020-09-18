@@ -33,7 +33,6 @@ export default function PermitMap() {
   const [permitDescription, setPermitDescription] = useState('');
   const [statusDate, setStatusDate] = useState('');
   const [permitStatus, setPermitStatus] = useState('');
-  const [markerLimit, setMarkerLimit] = useState(100);
 
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
@@ -50,26 +49,37 @@ export default function PermitMap() {
     mapRef.current.setZoom(16);
   }, []);
 
+  // gets marker limit amount from search bar
+  const [markerLimit, setMarkerLimit] = useState(100);
+  const handleMarkerLimit = useCallback(markerState => {
+    setMarkerLimit(markerState);
+  }, []);
+  console.log('map limit: ', markerLimit);
+
   const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
 
   const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=" + markerLimit + "&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
   const { data, error } = useSWR(url, fetcher);
   const permits = data && !error ? data : [];
 
-  // gets address from search bar
+  // gets address from search bar to control visibility of components below
   const [searchAddress, setSearchAddress] = useState('');
   const handleAddress = useCallback(addressState => {
     setSearchAddress(addressState);
   }, []);
+
+  // if click outside of marker, set detail area to default
+  const handleClick = () => setStatusDate('');
   
   if (loadError) return "Error";
   if (!isLoaded) return "Loading...";
 
   return (
-    <div>
+    <div id="permit-map">
       <SearchBar 
         getPanTo={panTo}
         handleAddress={handleAddress}
+        handleMarkerLimit={handleMarkerLimit}
       />
       {!searchAddress ? <GoogleMap
         mapContainerStyle={containerStyle}
@@ -77,6 +87,7 @@ export default function PermitMap() {
         zoom={11}
         options={options}
         onLoad={onMapLoad}
+        onClick={handleClick}
       >
         {permits.map(permit => (
           permit.location

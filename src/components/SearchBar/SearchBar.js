@@ -14,11 +14,21 @@ export default function SearchBar(props) {
   });
 
   const panTo = props.getPanTo;
+
+  // sends search address to parent, permit map
   const [searchAddress, setSearchAddress] = useState('');
   const handleAdd = props.handleAddress;
   useEffect(() => {
     handleAdd(searchAddress);
   }, [searchAddress, handleAdd]);
+
+  // sends marker limit amount to parent, permit map
+  const [markerLimit, setMarkerLimit] = useState(100);
+  const handleLimit = props.handleMarkerLimit;
+  useEffect(() => {
+    handleLimit(markerLimit);
+  }, [markerLimit, handleLimit]);
+  console.log('search limit: ', markerLimit)
 
   return (
     <div className="search">
@@ -44,7 +54,7 @@ export default function SearchBar(props) {
               setValue(e.target.value);
             }} 
             disabled={!ready}
-            placeholder="Search permits by address"
+            placeholder="Search by address"
           />
           <ComboboxPopover>
             <ComboboxList>
@@ -56,7 +66,13 @@ export default function SearchBar(props) {
           </ComboboxPopover>
         </div>
       </Combobox> 
-      
+      <div className="limit-input">
+        <input type="text" pattern="[1-2000]*" id="limit" name="limit" placeholder="100 markers"
+          onChange={e => {
+            setMarkerLimit(e.target.value);
+          }}
+        /> 
+      </div>
       {!searchAddress ? <div></div> :
         <div>
           <Results searchAddress = {searchAddress}/>
