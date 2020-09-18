@@ -22,20 +22,21 @@ export default function Results(props) {
     const results = data && !error ? data : [];
     const searchResults = results.map(result => 
         <details key={result.record_id} className="results-item">
-            <summary>Status Date: {result.status_date.slice(0, 10)}</summary>
+            <summary><span className="underline">Status Date:</span> {result.status_date.slice(0, 10)}</summary>
             <div className="results-details">
-                <p>Permit Number: {result.permit_number}</p>
-                <p>Permit Status: {result.status}</p>
-                <p>Description: {result.description}</p>
+                <p><span className="underline">Permit Number:</span> {result.permit_number}</p>
+                <p><span className="underline">Permit Status:</span> {result.status}</p>
+                <p><span className="underline">Description:</span> {result.description}</p>
             </div>
         </details>
     );
 
     return (
         <div className="results">
+            {searchResults.length > 20 ? <button onClick={refreshPage} className="restart-button">Start new search</button> : ''}
             <h2>Permits for {addressNum} {addressName} {addressSuffix}</h2>
             {searchResults.length > 0 ? searchResults : <p>No permits found for this address.</p>}
-            <button onClick={refreshPage}>Start new search</button>
+            <button onClick={refreshPage} className="restart-button">Start new search</button>
         </div>
     )
 }

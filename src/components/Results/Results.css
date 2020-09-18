@@ -13,13 +13,22 @@
 }
 
 .results-details {
-    margin: 20px;
-    padding: 20px;
-    background-color: #555555;
+    margin: 10px;
+    padding: 10px;
+    background-color: #777777;
+}
+
+.restart-button {
+    margin: 30px;
 }
 
 @media screen and (min-width: 800px) {
     .results {
         width: 800px;
+    }
+
+    .results-details {
+        margin: 20px;
+        padding: 20px;
     }
 }
