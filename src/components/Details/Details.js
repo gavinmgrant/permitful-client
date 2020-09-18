@@ -8,10 +8,14 @@ export default function Details(props) {
     return (
         <section className="details">
             {formattedDate === '' ? (
-                <p>Click a marker above for permit details.</p>
+                <p>The most recent permits are shown. Click a marker for permit details. Adjust the number of markers above.</p>
             ) : (
                 <div>
-                    <h2>{props.streetNumber} {props.streetName} {props.streetSuffix} {props.unitNumber}</h2>
+                    <h2>{props.streetNumber} {props.streetName} {props.streetSuffix} 
+                        {props.unitNumber ? <span>
+                            &nbsp;Unit {props.unitNumber}
+                        </span> : ''}
+                    </h2>
                     <div className="details-block">
                         <p><span className="underline">Status Date:</span> {formattedDate}</p>
                         <p><span className="underline">Permit Number:</span> {props.permitNumber}</p>

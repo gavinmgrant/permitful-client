@@ -28,7 +28,6 @@ export default function SearchBar(props) {
   useEffect(() => {
     handleLimit(markerLimit);
   }, [markerLimit, handleLimit]);
-  console.log('search limit: ', markerLimit)
 
   return (
     <div className="search">
@@ -67,7 +66,7 @@ export default function SearchBar(props) {
         </div>
       </Combobox> 
       <div className="limit-input">
-        <input type="text" pattern="[1-2000]*" id="limit" name="limit" placeholder="100 markers"
+        <input type="number" id="limit" name="limit" placeholder={`${markerLimit}`}
           onChange={e => {
             setMarkerLimit(e.target.value);
           }}
