@@ -3,15 +3,14 @@ import Favorite from '../Favorite/Favorite';
 import './Details.css';
 
 export default function Details(props) {
-    const date = props.statusDate
-    const formattedDate = date.slice(0, 10);
-
     // gets marker limit amount from search bar
     const [heartIcon, setHeartIcon] = useState(false);
     const handleHeartToggle = useCallback(heartState => {
         setHeartIcon(heartState);
     }, []);
-    console.log('Heart: ', heartIcon);
+    
+    const date = props.statusDate
+    const formattedDate = date.slice(0, 10);
 
     return (
         <section className="details">
