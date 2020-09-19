@@ -1,4 +1,5 @@
 import React from 'react';
+import Favorite from '../Favorite/Favorite';
 import useSWR from "swr";
 import './Results.css';
 
@@ -24,6 +25,7 @@ export default function Results(props) {
         <details key={result.record_id} className="results-item">
             <summary><span className="underline">Status Date:</span> {result.status_date.slice(0, 10)}</summary>
             <div className="results-details">
+                <Favorite />
                 <p><span className="underline">Permit Number:</span> {result.permit_number}</p>
                 <p><span className="underline">Permit Status:</span> {result.status}</p>
                 <p><span className="underline">Description:</span> {result.description}</p>
