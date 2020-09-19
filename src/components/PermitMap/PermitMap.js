@@ -91,28 +91,27 @@ export default function PermitMap() {
         {permits.map(permit => (
           permit.location
           ? (
-              <div>
-                <Marker 
-                  key={permit.record_id}
-                  clickable={true}
-                  onClick={() => {
-                    setPermitNumber(permit.permit_number);
-                    setStreetNumber(permit.street_number);
-                    setStreetName(permit.street_name);
-                    setStreetSuffix(permit.street_suffix);
-                    setUnitNumber(permit.unit);
-                    setPermitDescription(permit.description);
-                    setStatusDate(permit.status_date);
-                    setPermitStatus(permit.status);
-                  }}
-                  position={{ lat: parseFloat(permit.location.latitude),
-                    lng: parseFloat(permit.location.longitude) }} 
-                />
-              </div>
+              <Marker 
+                key={permit.record_id}
+                clickable={true}
+                onClick={() => {
+                  setPermitNumber(permit.permit_number);
+                  setStreetNumber(permit.street_number);
+                  setStreetName(permit.street_name);
+                  setStreetSuffix(permit.street_suffix);
+                  setUnitNumber(permit.unit);
+                  setPermitDescription(permit.description);
+                  setStatusDate(permit.status_date);
+                  setPermitStatus(permit.status);
+                }}
+                position={{ lat: parseFloat(permit.location.latitude),
+                  lng: parseFloat(permit.location.longitude) }} 
+              />
           ) : ''
         ))}
       </GoogleMap> : ''}
-      {!searchAddress ? <Details
+      {!searchAddress ? 
+      <Details
         permitNumber={permitNumber} 
         streetNumber={streetNumber}
         streetName={streetName}
