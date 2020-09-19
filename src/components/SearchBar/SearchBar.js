@@ -66,7 +66,13 @@ export default function SearchBar(props) {
         </div>
       </Combobox> 
       <div className="limit-input">
-        <input type="number" id="limit" name="limit" placeholder={`${markerLimit}`}
+        <input 
+          type="number" 
+          id="limit" 
+          name="limit" 
+          placeholder={`${markerLimit} markers`}
+          min="0"
+          max="10000"
           onChange={e => {
             setMarkerLimit(e.target.value);
           }}

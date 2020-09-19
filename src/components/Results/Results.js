@@ -15,6 +15,7 @@ export default function Results(props) {
     const handleHeartToggle = useCallback(heartState => {
         setHeartIcon(heartState);
     }, []);
+    console.log('Results favorite: ', heartIcon);
     
     const address = props.searchAddress;
     const addressArr = address.split(' ');
