@@ -8,6 +8,7 @@ export default function Details(props) {
     const handleHeartToggle = useCallback(heartState => {
         setHeartIcon(heartState);
     }, []);
+    console.log('Details favorite: ', heartIcon);
     
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
