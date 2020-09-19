@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useCallback } from 'react';
 import Favorite from '../Favorite/Favorite';
 import useSWR from "swr";
 import './Results.css';
@@ -10,6 +10,12 @@ function refreshPage() {
 }
 
 export default function Results(props) {
+    // gets marker limit amount from search bar
+    const [heartIcon, setHeartIcon] = useState(false);
+    const handleHeartToggle = useCallback(heartState => {
+        setHeartIcon(heartState);
+    }, []);
+    
     const address = props.searchAddress;
     const addressArr = address.split(' ');
     const addressNum = addressArr[0];
@@ -25,7 +31,9 @@ export default function Results(props) {
         <details key={result.record_id} className="results-item">
             <summary><span className="underline">Status Date:</span> {result.status_date.slice(0, 10)}</summary>
             <div className="results-details">
-                <Favorite />
+                <Favorite 
+                    handleHeartToggle={handleHeartToggle}
+                />
                 <p><span className="underline">Permit Number:</span> {result.permit_number}</p>
                 <p><span className="underline">Permit Status:</span> {result.status}</p>
                 <p><span className="underline">Description:</span> {result.description}</p>
