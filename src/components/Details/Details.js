@@ -1,17 +1,44 @@
-import React, { useState, useCallback } from 'react';
-import Favorite from '../Favorite/Favorite';
+import React, { useContext, useState } from 'react';
+import PermitfulContext from '../../contexts/PermitfulContext';
+import config from '../../config';
 import './Details.css';
 
 export default function Details(props) {
-    // gets marker limit amount from search bar
-    const [heartIcon, setHeartIcon] = useState(false);
-    const handleHeartToggle = useCallback(heartState => {
-        setHeartIcon(heartState);
-    }, []);
-    console.log('Details favorite: ', heartIcon);
-    
+    const context = useContext(PermitfulContext);
+
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
+
+    const [favoriteButton, setFavoriteButton] = useState('Add to favorites');
+
+    const handleFavorite = () => {
+        const favorited = {
+            permit_number: props.permitNumber
+        }
+        fetch(`${config.API_ENDPOINT}/favorites`, {
+            method: 'POST',
+            body: JSON.stringify(favorited),
+            headers: {
+                'content-type': 'application/json',
+            }
+        })
+        .then(res => {
+            if (!res.ok) {
+                return res.json().then(error => {
+                    throw error
+                })
+            }
+            return res.json()
+        })
+        .then(data => {
+            context.addFavorite({...data, favorited})
+        })
+        .then(setFavoriteButton('Added!'))
+        .then(setTimeout(() => { setFavoriteButton('Add to favorite')}, 2000))
+        .catch(error => {
+            console.error({ error });
+        })
+    }
 
     return (
         <section className="details">
@@ -28,14 +55,14 @@ export default function Details(props) {
                         </span> : ''}
                     </h2>
                     <div className="details-block">
-                        <Favorite 
-                            handleHeartToggle={handleHeartToggle}
-                        />
-                        <p><span className="underline">Status Date:</span> {formattedDate}</p>
-                        <p><span className="underline">Permit Number:</span> {props.permitNumber}</p>
-                        <p><span className="underline">Permit Status:</span> {props.permitStatus}</p>
-                        <p><span className="underline">Description:</span> {props.permitDescription}</p>
+                        <h3>
+                            <span className="underline">Permit Number</span>: {props.permitNumber}
+                        </h3>
+                        <p><span className="underline">Status Date</span>: {formattedDate}</p>
+                        <p><span className="underline">Permit Status</span>: {props.permitStatus}</p>
+                        <p><span className="underline">Description</span>: {props.permitDescription}</p>
                     </div>
+                    <button onClick={handleFavorite}>{favoriteButton}</button>  
                 </div>
             )}
         </section>

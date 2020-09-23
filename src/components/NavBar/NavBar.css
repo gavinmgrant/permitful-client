@@ -10,7 +10,7 @@ nav {
     z-index: 20;
 }
 
-li:hover {
+.nav-bar:hover {
     border-bottom: 2px solid #ffffff;
 }
 

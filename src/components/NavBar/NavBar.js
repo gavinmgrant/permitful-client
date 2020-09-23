@@ -11,6 +11,7 @@ export default function NavBar() {
                 </Link>
             </h3>
             <ul>
+                <Link to='/favorites' style={{ textDecoration: 'none' }}><li className='nav-bar'>Favorites</li></Link>
                 <Link to='/register' style={{ textDecoration: 'none' }}><li className='nav-bar'>Register</li></Link>
                 <Link to='/login' style={{ textDecoration: 'none' }}><li className='nav-bar'>Log In</li></Link>
             </ul>
