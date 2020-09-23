@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import './Details.css';
@@ -8,8 +8,6 @@ export default function Details(props) {
 
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
-
-    const [favoriteButton, setFavoriteButton] = useState('Add to favorites');
 
     const handleFavorite = () => {
         const favorited = {
@@ -33,12 +31,16 @@ export default function Details(props) {
         .then(data => {
             context.addFavorite({...data, favorited})
         })
-        .then(setFavoriteButton('Added!'))
-        .then(setTimeout(() => { setFavoriteButton('Add to favorite')}, 2000))
         .catch(error => {
             console.error({ error });
         })
     }
+
+    const checkIfFavorite = (current) => {
+        const isFavorite = (favorite) => favorite === current;
+        const favs = context.favorites.map(( { permit_number }) => permit_number)
+        return favs.some(isFavorite);
+    };
 
     return (
         <section className="details">
@@ -62,7 +64,12 @@ export default function Details(props) {
                         <p><span className="underline">Permit Status</span>: {props.permitStatus}</p>
                         <p><span className="underline">Description</span>: {props.permitDescription}</p>
                     </div>
-                    <button onClick={handleFavorite}>{favoriteButton}</button>  
+                    <button 
+                        disabled={checkIfFavorite(props.permitNumber)}
+                        onClick={handleFavorite}
+                    >
+                        {!checkIfFavorite(props.permitNumber) ? 'Add to favorites' : 'Favorited'}
+                    </button>  
                 </div>
             )}
         </section>

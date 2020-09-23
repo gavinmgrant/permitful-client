@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import useSWR from "swr";
@@ -12,8 +12,6 @@ function refreshPage() {
 
 export default function Results(props) {
     const context = useContext(PermitfulContext);
-
-    const [favoriteButton, setFavoriteButton] = useState('Add to favorites');
 
     const handleFavorite = (num) => {
         const favorited = {
@@ -37,8 +35,6 @@ export default function Results(props) {
         .then(data => {
             context.addFavorite({...data, favorited})
         })
-        .then(setFavoriteButton('Added!'))
-        .then(setTimeout(() => { setFavoriteButton('Add to favorite')}, 2000))
         .catch(error => {
             console.error({ error });
         })
@@ -56,6 +52,12 @@ export default function Results(props) {
     const { data, error } = useSWR(url, fetcher);
     const results = data && !error ? data : [];
 
+    const checkIfFavorite = (current) => {
+        const isFavorite = (favorite) => favorite === current;
+        const favs = context.favorites.map(( { permit_number }) => permit_number)
+        return favs.some(isFavorite);
+    };
+
     const searchResults = results.map(result => 
         <details key={result.record_id} className="results-item">
             <summary>
@@ -67,7 +69,12 @@ export default function Results(props) {
                 <p><span className="underline">Status Date: </span>{result.status_date.slice(0, 10)}</p>
                 <p><span className="underline">Status: </span>{result.status}</p>
                 <p><span className="underline">Description: </span>{result.description}</p>
-                <button onClick={() => handleFavorite(result.permit_number)}>{favoriteButton}</button>                   
+                <button 
+                    disabled={checkIfFavorite(result.permit_number)}
+                    onClick={() => handleFavorite(result.permit_number)}
+                >
+                    {!checkIfFavorite(result.permit_number) ? 'Add to favorites' : 'Favorited'}
+                </button>                   
             </div>
         </details>
     );

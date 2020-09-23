@@ -1,29 +1,71 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
+import TokenService from '../../services/token-service'
+import AuthApiService from '../../services/auth-api-service'
+import { Button, Input } from '../../utils/Utils'
 import './LogInForm.css';
 
-export default function LogInForm() {
-    return (
-        <section className="login-container">
-            <h2>Log In</h2>
-            <p>Welcome back! Please log in below to access your favorites. If you'd like to register for an account at Permitful,{' '}
-                <span>
-                    <Link to='/register'>register here</Link>
-                </span>.
-            </p>
-            <form>
-                <section className="login-form">
-                    <div>
-                        <label htmlFor="username">Username</label>
-                        <input className="input-typ" type="text" name="username" id="username" placeholder="enter your email address" />
-                    </div>
-                    <div>
-                        <label htmlFor="password">Password</label>
-                        <input className="input-typ" type="password" name="password" id="password" placeholder="enter your password" />
-                    </div> 
-                </section>
-                <button type='submit' className='login-button'>Submit</button>
-            </form>
-        </section>
-    )
+export default class LoginForm extends Component {
+    static defaultProps = {
+        onLoginSuccess: () => {}
+    }
+
+    state = { error: null }
+
+    handleSubmitJwtAuth = ev => {
+        ev.preventDefault()
+        this.setState({ error: null })
+        const { user_name, password } = ev.target
+    
+        AuthApiService.postLogin({
+            user_name: user_name.value,
+            password: password.value,
+        })
+            .then(res => {
+                user_name.value = ''
+                password.value = ''
+                TokenService.saveAuthToken(res.authToken)
+                this.props.onLoginSuccess()
+        })
+            .catch(res => {
+                this.setState({ error: res.error })
+        })
+    }
+
+    render() {
+        return (
+            <section className="login-container">
+                <h2>Log In</h2>
+                <p>Welcome back! Please log in below to access your favorites. If you'd like to register for an account at Permitful,{' '}
+                    <span>
+                        <Link to='/register'>register here</Link>
+                    </span>.
+                </p>
+                <form onSubmit={this.handleSubmitJwtAuth}>
+                    <section className="login-form">
+                        <div>
+                            <label htmlFor="username">Username</label>
+                            <Input
+                                required
+                                name='user_name'
+                                id='LoginForm__user_name'>
+                            </Input>
+                        </div>
+                        <div>
+                            <label htmlFor="password">Password</label>
+                            <Input
+                                required
+                                name='password'
+                                type='password'
+                                id='LoginForm__password'>
+                            </Input>
+                        </div> 
+                    </section>
+                    <Button type='submit'>
+                        Login
+                    </Button>
+                </form>
+            </section>
+        )
+    }
 }
