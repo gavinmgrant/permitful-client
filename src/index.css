@@ -66,10 +66,17 @@ button:hover {
   border: 2px solid #ffffff;
 }
 
-.heart-button:disabled,
 .heart-button:hover {
   color: #777777;
   background-color: #ffffff;
+}
+
+.heart-button:disabled {
+  color: #ffffff;
+}
+
+.heart-button:disabled:hover {
+  background: none;
 }
 
 a {
