@@ -1,3 +1,9 @@
+.title {
+    font-size: 64px;
+    color: #111111;
+    font-family: 'Quicksand', sans-serif;
+}
+
 .landing-hero {
     margin: 150px 0px;
 }

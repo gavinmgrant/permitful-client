@@ -30,6 +30,7 @@ class App extends Component {
     this.setState({
       favorites: this.state.favorites.filter(favorite => favorite.permit_number !== favoriteId)
     });
+    window.location.reload(false);
   };
 
   componentDidMount() {

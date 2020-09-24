@@ -2,6 +2,9 @@ import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import useSWR from "swr";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons';
 import './Results.css';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
@@ -72,8 +75,9 @@ export default function Results(props) {
                 <button 
                     disabled={checkIfFavorite(result.permit_number)}
                     onClick={() => handleFavorite(result.permit_number)}
+                    className="heart-button"
                 >
-                    {!checkIfFavorite(result.permit_number) ? 'Add to favorites' : 'Favorited'}
+                    {!checkIfFavorite(result.permit_number) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
                 </button>                   
             </div>
         </details>
@@ -81,7 +85,7 @@ export default function Results(props) {
     
     return (
         <div className="results">
-            <h2>Permits for {addressNum} {addressName} {addressSuffix}</h2>
+            <h1>{addressNum} {addressName} {addressSuffix}</h1>
             {searchResults.length > 0 ? searchResults : <p>No permits found for this address.</p>}
             <button onClick={refreshPage} className="restart-button">Start new search</button>
         </div>

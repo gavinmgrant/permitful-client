@@ -1,6 +1,9 @@
 import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons';
 import './Details.css';
 
 export default function Details(props) {
@@ -63,13 +66,14 @@ export default function Details(props) {
                         <p><span className="underline">Status Date</span>: {formattedDate}</p>
                         <p><span className="underline">Permit Status</span>: {props.permitStatus}</p>
                         <p><span className="underline">Description</span>: {props.permitDescription}</p>
-                    </div>
-                    <button 
-                        disabled={checkIfFavorite(props.permitNumber)}
-                        onClick={handleFavorite}
-                    >
-                        {!checkIfFavorite(props.permitNumber) ? 'Add to favorites' : 'Favorited'}
-                    </button>  
+                        <button 
+                            disabled={checkIfFavorite(props.permitNumber)}
+                            onClick={handleFavorite}
+                            className="heart-button"
+                        >
+                            {!checkIfFavorite(props.permitNumber) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
+                        </button> 
+                    </div> 
                 </div>
             )}
         </section>

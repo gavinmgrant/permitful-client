@@ -35,6 +35,10 @@ button {
   padding: 10px;
   margin-top: 10px;
   font-family: 'Roboto Condensed', sans-serif;
+  color: #111111;
+  background-color: #ffffff;
+  border: 2px solid #111111;
+  border-radius: 5px;
 }
 
 input {
@@ -52,12 +56,20 @@ select {
 
 button:hover {
   cursor: pointer;
+  color: #ffffff;
+  background-color: #111111;
 }
 
-h1 {
-  font-size: 60px;
-  color: #111111;
-  font-family: 'Quicksand', sans-serif;
+.heart-button {
+  color: #ffffff;
+  background: none;
+  border: 2px solid #ffffff;
+}
+
+.heart-button:disabled,
+.heart-button:hover {
+  color: #777777;
+  background-color: #ffffff;
 }
 
 a {

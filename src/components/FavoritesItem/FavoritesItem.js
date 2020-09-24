@@ -2,14 +2,16 @@ import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import useSWR from "swr";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTrash as fasFaTrash } from '@fortawesome/free-solid-svg-icons';
 import './FavoritesItem.css';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 export default function FavoriteItem(props) {
-    const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
-    const favoritePermit = props.permit_number
     const context = useContext(PermitfulContext);
+    const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
+    const favoritePermit = props.permit_number;
 
     const url = "https://data.sfgov.org/resource/i98e-djp9.json?permit_number=" + favoritePermit + "&$$app_token=" + appToken;
     const { data, error } = useSWR(url, fetcher);
@@ -46,19 +48,19 @@ export default function FavoriteItem(props) {
             </summary>
             {permits.map(permit => (
                 <div key="permit.record_id">
-                    <h3>
+                    <h2>
                         {permit.street_number} {permit.street_name} {permit.street_suffix} 
                         {permit.unit_number ? <span>
                             &nbsp;Unit {permit.unit_number}
                         </span> : ''}
-                    </h3>
+                    </h2>
                     <p><span className="underline">Status Date</span>: {permit.status_date.slice(0, 10)}</p>
                     <p><span className="underline">Status</span>: {permit.status}</p>
                     <p><span className="underline">Description</span>: {permit.description}</p>
                 </div>
             ))}
             <button onClick={handleDeleteFavorite}>
-                Remove from favorites
+                <FontAwesomeIcon icon={fasFaTrash} />
             </button>
         </details>
     );
