@@ -1,6 +1,5 @@
 import React from 'react';
 import './Landing.css';
-import RegistrationForm from '../RegistrationForm/RegistrationForm';
 import { Link } from 'react-router-dom';
 
 export default function Landing() {
@@ -10,14 +9,14 @@ export default function Landing() {
           <h1 className="title">Permitful</h1>
           <p>Visualize and find building permits</p>
           <Link to='/map'>
-          <button>
-            Get started
-          </button>
-        </Link>
+            <button>
+              Get started
+            </button>
+          </Link>
       </section>
 
       <section className='landing-sections'>
-        <h2>Building permits map</h2>
+        <h2>Analyse our building permits map</h2>
         <p>Permitful provides an interactive map that allows users to visualize where all of the most recently updated building permits in a specific jurisdiction are located.</p>
         <p>San Francisco is the first supported jurisdiction.</p>
       </section>
@@ -28,16 +27,27 @@ export default function Landing() {
       </section>
 
       <section className='landing-sections'>
-        <h2>Permit details</h2>
+        <h2>View permit details</h2>
         <p>Once your search finds a property, Permitful lists any building permits on file. For each permit, you will find its permit number, status, and a brief description.</p>
       </section>
 
       <section className='landing-sections'>
-        <h2>Your favorites</h2>
+        <h2>Save your favorites</h2>
         <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
       </section>
 
-      <RegistrationForm />
+      <section className="cta-container">
+        <Link to='/register'>
+          <button className="cta-button">
+            New users register here
+          </button>
+        </Link>
+        <Link to='/login'>
+          <button className="cta-button">
+            Existing users log in
+          </button>
+        </Link>
+      </section>
     </section>
   );
 }
