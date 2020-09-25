@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom';
 export default function Landing() {
   return (
     <section className='landing'>
-      <section className='landing-hero'>
+      <section className='landing-container'>
+        <div className='landing-hero'>
           <h1 className="title">Permitful</h1>
           <p>Visualize and find building permits</p>
           <Link to='/map'>
@@ -13,6 +14,7 @@ export default function Landing() {
               Get started
             </button>
           </Link>
+        </div>
       </section>
 
       <section className='landing-sections'>

@@ -2,10 +2,18 @@
     font-size: 64px;
     color: #111111;
     font-family: 'Quicksand', sans-serif;
+    
+}
+.landing-container {
+    display:flex;
+    height: 90vh;
+    margin: 0;
+    padding: 0;
 }
 
 .landing-hero {
-    margin: 150px 0px;
+    margin: auto;
+    padding: 0;
 }
 
 .landing-sections {
