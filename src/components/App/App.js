@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Landing from '../Landing/Landing';
 import NavBar from '../NavBar/NavBar';
+import PrivateRoute from '../../utils/PrivateRoute';
+import PublicOnlyRoute from '../../utils/PublicOnlyRoute';
 import Footer from '../Footer/Footer';
 import { Route, Switch } from 'react-router-dom';
 import PermitMap from '../PermitMap/PermitMap';
@@ -9,6 +11,7 @@ import LogInForm from '../LogInForm/LogInForm';
 import FavoritesList from '../FavoritesList/FavoritesList';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import './App.css';
 
 class App extends Component {
@@ -34,7 +37,13 @@ class App extends Component {
   };
 
   componentDidMount() {
-    fetch(`${config.API_ENDPOINT}/favorites`)
+    fetch(`${config.API_ENDPOINT}/favorites`, {
+      method: 'GET',
+        headers: {
+            'content-type': 'application/json',
+            'authorization': `bearer ${TokenService.getAuthToken()}`,
+        },
+    })
       .then(res => {
         if (!res.ok) {
           throw new Error(res.statusText);
@@ -66,9 +75,9 @@ class App extends Component {
           <Switch>
             <Route exact path='/' component={Landing} />
             <Route path='/map' component={PermitMap} />
-            <Route path='/register' component={RegistrationForm} />
-            <Route path='/login' component={LogInForm} />
-            <Route path='/favorites' component={FavoritesList} />
+            <PublicOnlyRoute path='/register' component={RegistrationForm} />
+            <PublicOnlyRoute path='/login' component={LogInForm} />
+            <PrivateRoute path='/favorites' component={FavoritesList} />
           </Switch>
           <Footer />
         </main>

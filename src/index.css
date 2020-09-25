@@ -94,3 +94,17 @@ a:visited {
 .underline {
   text-decoration: underline;
 }
+
+.red {
+  color: #CA1551;
+}
+
+.white {
+  color: #ffffff;
+}
+
+.demo {
+  margin: 20px 0px;
+  padding: 20px;
+  background: #999999;
+}

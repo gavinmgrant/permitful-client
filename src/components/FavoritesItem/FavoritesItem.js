@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import useSWR from "swr";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash as fasFaTrash } from '@fortawesome/free-solid-svg-icons';
@@ -24,6 +25,7 @@ export default function FavoriteItem(props) {
             method: 'DELETE',
             headers: {
                 'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
             }
         })
         .then(res => {

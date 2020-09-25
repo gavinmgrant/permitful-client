@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import useSWR from "swr";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
@@ -18,13 +19,15 @@ export default function Results(props) {
 
     const handleFavorite = (num) => {
         const favorited = {
-            permit_number: num
+            permit_number: num,
+            user_id: 1
         }
         fetch(`${config.API_ENDPOINT}/favorites`, {
             method: 'POST',
             body: JSON.stringify(favorited),
             headers: {
                 'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
             }
         })
         .then(res => {
@@ -72,13 +75,14 @@ export default function Results(props) {
                 <p><span className="underline">Status Date: </span>{result.status_date.slice(0, 10)}</p>
                 <p><span className="underline">Status: </span>{result.status}</p>
                 <p><span className="underline">Description: </span>{result.description}</p>
-                <button 
-                    disabled={checkIfFavorite(result.permit_number)}
-                    onClick={() => handleFavorite(result.permit_number)}
-                    className="heart-button"
-                >
-                    {!checkIfFavorite(result.permit_number) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
-                </button>                   
+                {TokenService.hasAuthToken() ?
+                    <button 
+                        disabled={checkIfFavorite(result.permit_number)}
+                        onClick={() => handleFavorite(result.permit_number)}
+                        className="heart-button"
+                    >
+                        {!checkIfFavorite(result.permit_number) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
+                    </button> : ''}                   
             </div>
         </details>
     );

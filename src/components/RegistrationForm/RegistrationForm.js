@@ -30,12 +30,16 @@ export default class RegistrationForm extends Component {
     };
 
     render() {
+        const { error } = this.state
         return (
             <section className="registration-container">
                 <h2>Register</h2>
                 <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
                 <form onSubmit={this.handleSubmit}>
                     <section className="registration-form">
+                        <div role='alert'>
+                            {error && <p className='red'>{error}</p>}
+                        </div>
                         <div>
                             <label htmlFor="username">
                                 Username <Required />

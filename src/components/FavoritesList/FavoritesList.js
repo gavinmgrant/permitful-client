@@ -2,10 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import useSWR from "swr";
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import FavoritesItem from '../FavoritesItem/FavoritesItem';
 import './FavoritesList.css';
 
-const fetcher = (...args) => fetch(...args).then(response => response.json());
+const fetcher = url => fetch(url, {
+    headers: {
+        'content-type': 'application/json',
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
+    }
+}).then(r => r.json())
 
 export default function FavoritesList() {
     // get saved favorite permit numbers from the server

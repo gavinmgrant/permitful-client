@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
+import TokenService from '../../services/token-service';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
 import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons';
@@ -14,14 +15,16 @@ export default function Details(props) {
 
     const handleFavorite = () => {
         const favorited = {
-            permit_number: props.permitNumber
+            permit_number: props.permitNumber,
+            user_id: 1
         }
         fetch(`${config.API_ENDPOINT}/favorites`, {
             method: 'POST',
-            body: JSON.stringify(favorited),
             headers: {
                 'content-type': 'application/json',
-            }
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            },
+            body: JSON.stringify(favorited),
         })
         .then(res => {
             if (!res.ok) {
@@ -44,7 +47,7 @@ export default function Details(props) {
         const favs = context.favorites.map(( { permit_number }) => permit_number)
         return favs.some(isFavorite);
     };
-
+ 
     return (
         <section className="details">
             {formattedDate === '' ? (
@@ -66,13 +69,15 @@ export default function Details(props) {
                         <p><span className="underline">Status Date</span>: {formattedDate}</p>
                         <p><span className="underline">Permit Status</span>: {props.permitStatus}</p>
                         <p><span className="underline">Description</span>: {props.permitDescription}</p>
-                        <button 
-                            disabled={checkIfFavorite(props.permitNumber)}
-                            onClick={handleFavorite}
-                            className="heart-button"
-                        >
-                            {!checkIfFavorite(props.permitNumber) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
-                        </button> 
+                        {TokenService.hasAuthToken() ?
+                            <button 
+                                disabled={checkIfFavorite(props.permitNumber)}
+                                onClick={handleFavorite}
+                                className="heart-button"
+                            >
+                                {!checkIfFavorite(props.permitNumber) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
+                            </button> 
+                        : ''}
                     </div> 
                 </div>
             )}

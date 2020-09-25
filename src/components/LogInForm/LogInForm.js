@@ -7,7 +7,9 @@ import './LogInForm.css';
 
 export default class LoginForm extends Component {
     static defaultProps = {
-        onLoginSuccess: () => {}
+        onLoginSuccess: () => {
+            window.location.reload(false);
+        }
     }
 
     state = { error: null }
@@ -33,16 +35,27 @@ export default class LoginForm extends Component {
     }
 
     render() {
+        const { error } = this.state
         return (
             <section className="login-container">
                 <h2>Log In</h2>
-                <p>Welcome back! Please log in below to access your favorites. If you'd like to register for an account at Permitful,{' '}
+                <p>Welcome back! Please log in below to access your favorites.</p>
+                <p>If you'd like to register for an account at Permitful,{' '}
                     <span>
                         <Link to='/register'>register here</Link>
                     </span>.
                 </p>
+                <section className="demo">
+                    <p>To demo this site log in with these credentials:</p>
+                    <p>username: <span className="white">newuser</span></p>
+                    <p>password: <span className="white">Testing123!</span></p>
+                </section>
+                
                 <form onSubmit={this.handleSubmitJwtAuth}>
                     <section className="login-form">
+                        <div role='alert'>
+                            {error && <p className='red'>{error}</p>}
+                        </div>
                         <div>
                             <label htmlFor="username">Username</label>
                             <Input
