@@ -53,7 +53,7 @@ export default function SearchBar(props) {
               setValue(e.target.value);
             }} 
             disabled={!ready}
-            placeholder="Search by address"
+            placeholder="Search by SF address"
           />
           <ComboboxPopover>
             <ComboboxList>
@@ -70,7 +70,7 @@ export default function SearchBar(props) {
           type="number" 
           id="limit" 
           name="limit" 
-          placeholder={`${markerLimit} markers`}
+          placeholder={'# of markers'}
           min="0"
           max="10000"
           onChange={e => {
