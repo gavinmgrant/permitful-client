@@ -46,6 +46,8 @@ input {
   padding: 10px;
   font-size: 18px;
   font-family: 'Roboto Condensed', sans-serif;
+  border: 1px solid #777777;
+  border-radius: 5px;
 }
 
 select {
@@ -95,8 +97,20 @@ a:visited {
   text-decoration: underline;
 }
 
-.red {
-  color: #CA1551;
+.error {
+  background-color: #CA1551;
+  color: #ffffff;
+  margin: 20px 0;;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.success {
+  background-color: #5A6351;
+  color: #ffffff;
+  margin: 20px 0;;
+  padding: 10px;
+  border-radius: 5px;
 }
 
 .white {

@@ -30,13 +30,13 @@ export default function Landing() {
       </section>
 
       <section className='landing-sections'>
-        <h2>Analyse the permit details</h2>
+        <h2>Analyze the permit details</h2>
         <p>Once your search finds a property, Permitful lists any building permits on file. For each permit, you will find its permit number, status, and a brief description.</p>
       </section>
 
       <section className='landing-sections'>
         <h2>Save your favorites</h2>
-        <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
+        <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register.</p>
       </section>
 
       {TokenService.hasAuthToken() ? "" :

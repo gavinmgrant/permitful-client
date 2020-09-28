@@ -3,12 +3,11 @@ import { Button, Input, Required } from '../../utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
 import './RegistrationForm.css';
 
-export default class RegistrationForm extends Component {
-    static defaultProps = {
-      onRegistrationSuccess: () => {}
+export default class RegistrationForm extends Component {  
+    state = { 
+        error: null,
+        onRegistrationSuccess: false
     };
-  
-    state = { error: null };
 
     handleSubmit = ev => {
         ev.preventDefault()
@@ -22,7 +21,7 @@ export default class RegistrationForm extends Component {
         .then(user => {
             user_name.value = ''
             password.value = ''
-            this.props.onRegistrationSuccess()
+            this.setState({ onRegistrationSuccess: true })
         })
         .catch(res => {
             this.setState({ error: res.error })
@@ -35,10 +34,11 @@ export default class RegistrationForm extends Component {
             <section className="registration-container">
                 <h2>Register</h2>
                 <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
+                {this.state.onRegistrationSuccess ? <p className='success'>Success! We have saved your credentials. You can now log in to save favorites.</p> : ''}
                 <form onSubmit={this.handleSubmit}>
                     <section className="registration-form">
                         <div role='alert'>
-                            {error && <p className='red'>{error}</p>}
+                            {error && <p className='error'>{error}</p>}
                         </div>
                         <div>
                             <label htmlFor="username">
