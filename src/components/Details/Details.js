@@ -2,9 +2,7 @@ import React, { useContext } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons';
+import { HeartSolid, HeartOutline } from '../../utils/Icons';
 import './Details.css';
 
 export default function Details(props) {
@@ -75,7 +73,7 @@ export default function Details(props) {
                                 onClick={handleFavorite}
                                 className="heart-button"
                             >
-                                {!checkIfFavorite(props.permitNumber) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
+                                {!checkIfFavorite(props.permitNumber) ? HeartOutline : HeartSolid}
                             </button> 
                         : ''}
                     </div> 

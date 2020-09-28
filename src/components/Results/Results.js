@@ -3,9 +3,7 @@ import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import useSWR from "swr";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeart as fasFaHeart } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as farFaHeart } from '@fortawesome/free-regular-svg-icons';
+import { HeartSolid, HeartOutline } from '../../utils/Icons';
 import './Results.css';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
@@ -81,7 +79,7 @@ export default function Results(props) {
                         onClick={() => handleFavorite(result.permit_number)}
                         className="heart-button"
                     >
-                        {!checkIfFavorite(result.permit_number) ? <FontAwesomeIcon icon={farFaHeart} /> : <FontAwesomeIcon icon={fasFaHeart} />}
+                        {!checkIfFavorite(result.permit_number) ? HeartOutline : HeartSolid}
                     </button> : ''}                   
             </div>
         </details>
