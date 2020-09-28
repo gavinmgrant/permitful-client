@@ -97,6 +97,10 @@ a:visited {
   text-decoration: underline;
 }
 
+.bold {
+  font-weight: bold;
+}
+
 .error {
   background-color: #CA1551;
   color: #ffffff;

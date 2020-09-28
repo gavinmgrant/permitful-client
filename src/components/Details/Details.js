@@ -64,11 +64,11 @@ export default function Details(props) {
                     </h2>
                     <div className="details-block">
                         <h3>
-                            <span className="underline">Permit Number</span>: {props.permitNumber}
+                            <span className="bold">Permit Number</span>: {props.permitNumber}
                         </h3>
-                        <p><span className="underline">Status Date</span>: {formattedDate}</p>
-                        <p><span className="underline">Permit Status</span>: {props.permitStatus}</p>
-                        <p><span className="underline">Description</span>: {props.permitDescription}</p>
+                        <p><span className="bold">Status Date</span>: {formattedDate}</p>
+                        <p><span className="bold">Permit Status</span>: {props.permitStatus}</p>
+                        <p><span className="bold">Description</span>: {props.permitDescription}</p>
                         {TokenService.hasAuthToken() ?
                             <button 
                                 disabled={checkIfFavorite(props.permitNumber)}

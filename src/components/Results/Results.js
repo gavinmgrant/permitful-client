@@ -68,13 +68,13 @@ export default function Results(props) {
         <details key={result.record_id} className="results-item">
             <summary>
                 <h3>
-                    <span className="underline">Permit Number</span>: {result.permit_number}
+                    <span className="bold">Permit Number</span>: {result.permit_number}
                 </h3>
             </summary>
             <div className="results-details">
-                <p><span className="underline">Status Date: </span>{result.status_date.slice(0, 10)}</p>
-                <p><span className="underline">Status: </span>{result.status}</p>
-                <p><span className="underline">Description: </span>{result.description}</p>
+                <p><span className="bold">Status Date: </span>{result.status_date.slice(0, 10)}</p>
+                <p><span className="bold">Status: </span>{result.status}</p>
+                <p><span className="bold">Description: </span>{result.description}</p>
                 {TokenService.hasAuthToken() ?
                     <button 
                         disabled={checkIfFavorite(result.permit_number)}
