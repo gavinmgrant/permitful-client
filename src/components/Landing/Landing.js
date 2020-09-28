@@ -1,6 +1,7 @@
 import React from 'react';
-import './Landing.css';
+import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
+import './Landing.css';
 
 export default function Landing() {
   return (
@@ -38,18 +39,20 @@ export default function Landing() {
         <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
       </section>
 
-      <section className="cta-container">
-        <Link to='/register'>
-          <button className="cta-button">
-            New users register here
-          </button>
-        </Link>
-        <Link to='/login'>
-          <button className="cta-button">
-            Existing users log in
-          </button>
-        </Link>
-      </section>
+      {TokenService.hasAuthToken() ? "" :
+        <section className="cta-container">
+          <Link to='/register'>
+            <button className="cta-button">
+              New users register here
+            </button>
+          </Link>
+          <Link to='/login'>
+            <button className="cta-button">
+              Existing users log in
+            </button>
+          </Link>
+        </section>
+      }
     </section>
   );
 }
