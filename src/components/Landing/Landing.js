@@ -9,9 +9,9 @@ export default function Landing() {
       <section className='landing-container'>
         <div className='landing-hero'>
           <h1 className="title">Permitful</h1>
-          <p>Visualize and find building permits</p>
+          <p className='title-sub'>Visualize and find building permits</p>
           <Link to='/map'>
-            <button>
+            <button className='title-button'>
               Get started
             </button>
           </Link>

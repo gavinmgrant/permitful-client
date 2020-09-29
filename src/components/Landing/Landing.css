@@ -2,17 +2,34 @@
     font-size: 64px;
     color: #111111;
     font-family: 'Quicksand', sans-serif;
-    
 }
+
+.title-sub {
+    color: #111111;
+}
+
+.title-button {
+    background: none;
+}
+
 .landing-container {
     display:flex;
-    height: 90vh;
+    height: 100vh;
     margin: 0;
     padding: 0;
+    background: url("../../images/background.png") no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
 .landing-hero {
-    margin: auto;
+    margin-top: 40%;
+    margin-left: auto;
+    margin-right: auto;
     padding: 0;
 }
 
