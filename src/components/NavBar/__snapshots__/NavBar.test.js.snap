@@ -1,0 +1,50 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NavBar component renders a navbar by default 1`] = `
+<nav
+  role="navigation"
+>
+  <h3>
+    <Link
+      className="logo"
+      to="/"
+    >
+      Permitful
+    </Link>
+  </h3>
+  <div
+    className="navbar-not-logged-in"
+  >
+    <ul>
+      <Link
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+        to="/register"
+      >
+        <li
+          className="nav-bar"
+        >
+          Register
+        </li>
+      </Link>
+      <Link
+        style={
+          Object {
+            "textDecoration": "none",
+          }
+        }
+        to="/login"
+      >
+        <li
+          className="nav-bar"
+        >
+          Log In
+        </li>
+      </Link>
+    </ul>
+  </div>
+</nav>
+`;

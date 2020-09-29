@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`SearchBar component renders a search bar form by default 1`] = `
+<div
+  className="search"
+>
+  <Combobox
+    onSelect={[Function]}
+  >
+    <div
+      className="search-input"
+    >
+      <ComboboxInput
+        disabled={true}
+        onChange={[Function]}
+        placeholder="Search by SF address"
+        value=""
+      />
+      <ComboboxPopover>
+        <ComboboxList />
+      </ComboboxPopover>
+    </div>
+  </Combobox>
+  <div
+    className="limit-input"
+  >
+    <input
+      id="limit"
+      max="10000"
+      min="0"
+      name="limit"
+      onChange={[Function]}
+      placeholder="# of markers"
+      type="number"
+    />
+  </div>
+  <div />
+</div>
+`;

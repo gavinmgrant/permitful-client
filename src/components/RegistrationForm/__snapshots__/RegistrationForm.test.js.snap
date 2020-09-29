@@ -1,0 +1,58 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegistrationForm component renders a registration form by default 1`] = `
+<section
+  className="registration-container"
+>
+  <h2>
+    Register
+  </h2>
+  <p>
+    Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.
+  </p>
+  <form
+    onSubmit={[Function]}
+  >
+    <section
+      className="registration-form"
+    >
+      <div
+        role="alert"
+      />
+      <div>
+        <label
+          htmlFor="username"
+        >
+          Username 
+          <Required />
+        </label>
+        <Input
+          id="RegistrationForm__user_name"
+          name="user_name"
+          required={true}
+          type="text"
+        />
+      </div>
+      <div>
+        <label
+          htmlFor="password"
+        >
+          Password 
+          <Required />
+        </label>
+        <Input
+          id="RegistrationForm__password"
+          name="password"
+          required={true}
+          type="password"
+        />
+      </div>
+    </section>
+    <Button
+      type="submit"
+    >
+      Register
+    </Button>
+  </form>
+</section>
+`;

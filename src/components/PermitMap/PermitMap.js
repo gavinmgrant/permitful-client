@@ -74,7 +74,7 @@ export default function PermitMap() {
   if (!isLoaded) return "Loading...";
 
   return (
-    <div id="permit-map">
+    <div id='permit-map' className='permit-map'>
       <SearchBar 
         getPanTo={panTo}
         handleAddress={handleAddress}

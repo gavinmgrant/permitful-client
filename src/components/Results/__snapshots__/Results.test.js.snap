@@ -1,0 +1,24 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Results component renders a results form by default 1`] = `
+<div
+  className="results"
+>
+  <h1>
+    2000
+     
+    Post
+     
+    Street
+  </h1>
+  <p>
+    No permits found for this address.
+  </p>
+  <button
+    className="restart-button"
+    onClick={[Function]}
+  >
+    Start new search
+  </button>
+</div>
+`;

@@ -1,0 +1,53 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Details component renders a \`.details\` 1`] = `
+<section
+  className="details"
+>
+  <div
+    className="details-result"
+  >
+    <h2>
+       
+       
+    </h2>
+    <div
+      className="details-block"
+    >
+      <h3>
+        <span
+          className="bold"
+        >
+          Permit Number
+        </span>
+        : 
+      </h3>
+      <p>
+        <span
+          className="bold"
+        >
+          Status Date
+        </span>
+        : 
+        2011-08-25
+      </p>
+      <p>
+        <span
+          className="bold"
+        >
+          Permit Status
+        </span>
+        : 
+      </p>
+      <p>
+        <span
+          className="bold"
+        >
+          Description
+        </span>
+        : 
+      </p>
+    </div>
+  </div>
+</section>
+`;

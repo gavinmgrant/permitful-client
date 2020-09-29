@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Footer component renders a footer by default 1`] = `
+<footer>
+  Copyright © 2020 Permitful
+</footer>
+`;
