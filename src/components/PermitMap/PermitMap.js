@@ -71,7 +71,7 @@ export default function PermitMap() {
   const handleClick = () => setStatusDate('');
   
   if (loadError) return "Error";
-  if (!isLoaded) return "Loading...";
+  if (!isLoaded) return "Loading the map...";
 
   return (
     <div id='permit-map' className='permit-map'>
