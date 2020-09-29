@@ -46,9 +46,9 @@ export default class LoginForm extends Component {
                     </span>.
                 </p>
                 <section className="demo">
-                    <p>To demo this site log in with these credentials:</p>
-                    <p>username: <span className="white">newuser</span></p>
-                    <p>password: <span className="white">Testing123!</span></p>
+                    <p>To demo this site without registering, log in with these credentials:</p>
+                    <p>username: <span className="bold">newuser</span></p>
+                    <p>password: <span className="bold">Testing123!</span></p>
                 </section>
                 
                 <form onSubmit={this.handleSubmitJwtAuth}>

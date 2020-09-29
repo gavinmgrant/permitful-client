@@ -3,15 +3,15 @@ nav {
     top: 0;
     left: 0;
     right: 0;
-    color: #ffffff;
-    background-color: #777777;
+    color: #18181E;
+    background-color: #DEC79B;
     margin: 0;
     padding: 20px;
     z-index: 20;
 }
 
 .nav-bar:hover {
-    border-bottom: 2px solid #ffffff;
+    border-bottom: 2px solid #18181E;
 }
 
 ul {
@@ -34,12 +34,12 @@ li {
 }
 
 .logo:visited {
-    color: #ffffff;
+    color: #18181E;
 }
 
 .nav-bar,
 .nav-bar:visited {
-    color: #ffffff;
+    color: #18181E;
 }
 
 @media screen and (min-width: 400px) {
@@ -49,7 +49,7 @@ li {
     }
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1024px) {
     li {
         padding: 10px;
     }

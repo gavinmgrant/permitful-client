@@ -9,7 +9,14 @@
 }
 
 .title-button {
+    color: #111111;
     background: none;
+    border: 2px solid #111111;
+}
+
+.title-button:hover {
+    color: #ffffff;
+    background: #111111;
 }
 
 .landing-container {
@@ -34,7 +41,7 @@
 }
 
 .landing-sections {
-    margin: 50px;
+    margin: 100px 150px;
 }
 
 .cta-container {

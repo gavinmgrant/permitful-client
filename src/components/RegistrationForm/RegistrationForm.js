@@ -33,7 +33,8 @@ export default class RegistrationForm extends Component {
         return (
             <section className="registration-container">
                 <h2>Register</h2>
-                <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register below.</p>
+                <p>Registered users can select their favorite permits and quickly retrieve their details later.</p>
+                <p>Save time and register below.</p>
                 {this.state.onRegistrationSuccess ? <p className='success'>Success! We have saved your credentials. You can now log in to save favorites.</p> : ''}
                 <form onSubmit={this.handleSubmit}>
                     <section className="registration-form">

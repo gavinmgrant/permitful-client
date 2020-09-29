@@ -5,7 +5,7 @@
 }
 
 html {
-  background-color: #999999;
+  background-color: #f7f7f7;
   margin: 0;
   height: 100%;
 }
@@ -15,11 +15,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   font-size: 18px;
-  color: #444444;
-  background-color: white;
+  color: #ffffff;
+  background-color: #18181E;
   text-align: center;
   line-height: 1.5;
-  width: 800px;
+  width: 1024px;
   max-width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -32,34 +32,39 @@ code {
 
 button {
   font-size: 18px;
-  padding: 10px;
-  margin-top: 10px;
+  padding: 15px;
+  margin-top: 20px;
   font-family: 'Roboto Condensed', sans-serif;
-  color: #111111;
-  background-color: #ffffff;
-  border: 2px solid #111111;
+  color: #ffffff;
+  background: none;
+  border: 2px solid #ffffff;
   border-radius: 5px;
+}
+
+button:hover {
+  cursor: pointer;
+  color: #18181E;
+  background-color: #ffffff;
 }
 
 input {
   width: 100%;
-  padding: 10px;
+  padding: 15px;
   font-size: 18px;
   font-family: 'Roboto Condensed', sans-serif;
-  border: 1px solid #777777;
+  border: 1px solid #ffffff;
   border-radius: 5px;
+}
+
+input[type=text] {
+  background-color: #DEC79B;
+  color: #18181E;
 }
 
 select {
   width: 40%;
   padding: 10px;
   font-size: 18px;
-}
-
-button:hover {
-  cursor: pointer;
-  color: #ffffff;
-  background-color: #111111;
 }
 
 .heart-button {
@@ -82,11 +87,15 @@ button:hover {
 }
 
 a {
-  color: #111111;
+  color: #ffffff;
 }
 
 a:visited {
-  color: #444444;
+  color: #ffffff;
+}
+
+summary {
+  margin-bottom: 20px;
 }
 
 .input-typ {
@@ -124,7 +133,8 @@ a:visited {
 .demo {
   margin: 20px 0px;
   padding: 20px;
-  background: #999999;
+  color: #18181E;
+  background: #DEC79B;
   border-radius: 5px;
 }
 

@@ -6,8 +6,7 @@
 .search-input {
     position: fixed;
     margin-left: 10px;
-    margin-right: auto;
-    width: 60%;
+    margin-right: 150px;
     margin-top: 10px;
     left: 0;
     right: 0;
@@ -18,7 +17,7 @@
 .limit-input input {
     padding: 0.5rem;
     height: 50px;
-    border: 2px solid #777777;
+    border: 2px solid #18181E;
     border-radius: 25px;
 }
 
@@ -26,7 +25,7 @@
     position: fixed;
     margin-left: auto;
     margin-right: 10px;
-    width: 30%;
+    width: 130px;
     margin-top: 10px;
     left: 0;
     right: 0;
@@ -43,16 +42,20 @@
     z-index: 10;
 }
 
-@media screen and (min-width: 800px) {
+[id^=listbox] {
+    color: #18181E;
+}
+
+@media screen and (min-width: 1024px) {
     .search-input {
         margin-left: auto;
-        width: 500px;
-        right: 210px;
+        margin-right: auto;
+        width: 800px;
+        right: 170px;
     }
 
     .limit-input {
         margin-right: auto;
-        width: 200px;
-        left: 510px;
+        left: 840px;
     }
 }

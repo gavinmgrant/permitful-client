@@ -2,7 +2,7 @@
     position: fixed;
     bottom: 0;
     width: 100%;
-    background-color: #000000;
+    background-color: #18181E;
     color: #ffffff;
     padding: 15px;
 }
@@ -10,18 +10,24 @@
 .details-block {
     margin: 10px;
     padding: 10px;
-    background-color: #777777;
+    color: #18181E;
+    background-color: #DEC79B;
+    border-radius: 5px;;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
     .details {
-        width: 800px;
         padding: 20px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .details {
+        width: 1024px;
     }
 
     .details-block {
         margin: 20px;
         padding: 20px;
-        background-color: #777777;
     }
 }

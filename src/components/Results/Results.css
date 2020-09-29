@@ -1,6 +1,6 @@
 .results {
     position: relative;
-    margin: 0 0 0 0;
+    margin: 0;
     width: 100%;
     background-color: #000000;
     color: #ffffff;
@@ -15,16 +15,18 @@
 .results-details {
     margin: 10px;
     padding: 10px;
-    background-color: #777777;
+    color: #18181E;
+    background-color: #DEC79B;
+    border-radius: 5px;
 }
 
 .restart-button {
     margin: 30px;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 1024px) {
     .results {
-        width: 800px;
+        width: 1024px;
     }
 
     .results-details {

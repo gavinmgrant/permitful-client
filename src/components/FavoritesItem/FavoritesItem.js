@@ -56,9 +56,11 @@ export default function FavoriteItem(props) {
                             &nbsp;Unit {permit.unit_number}
                         </span> : ''}
                     </h2>
-                    <p><span className="underline">Status Date</span>: {permit.status_date.slice(0, 10)}</p>
-                    <p><span className="underline">Status</span>: {permit.status}</p>
-                    <p><span className="underline">Description</span>: {permit.description}</p>
+                    <section className="favorite-details">
+                        <p><span className="underline">Status Date</span>: {permit.status_date.slice(0, 10)}</p>
+                        <p><span className="underline">Status</span>: {permit.status}</p>
+                        <p><span className="underline">Description</span>: {permit.description}</p>
+                    </section>
                 </div>
             ))}
             <button onClick={handleDeleteFavorite}>

@@ -1,4 +1,11 @@
 .favorite-permit-item:hover {
     cursor: pointer;
-    color: #000000;
+}
+
+.favorite-details {
+    margin: 10px;
+    padding: 10px;
+    color: #18181E;
+    background-color: #DEC79B;
+    border-radius: 5px;
 }
