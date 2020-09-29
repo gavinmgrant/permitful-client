@@ -56,7 +56,7 @@ export default class LoginForm extends Component {
                         <div role='alert'>
                             {error && <p className='error'>{error}</p>}
                         </div>
-                        <div>
+                        <div className='input-typ'>
                             <label htmlFor="username">Username</label>
                             <Input
                                 required
@@ -64,7 +64,7 @@ export default class LoginForm extends Component {
                                 id='LoginForm__user_name'>
                             </Input>
                         </div>
-                        <div>
+                        <div className='input-typ'>
                             <label htmlFor="password">Password</label>
                             <Input
                                 required

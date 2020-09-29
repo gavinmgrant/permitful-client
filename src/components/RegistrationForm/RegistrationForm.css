@@ -14,9 +14,16 @@
     margin-bottom: 30px;
 }
 
-@media screen and (min-width: 800px) {
+@media screen and (min-width: 600px) {
     .registration-container {
-        margin: 60px;
+        margin: 50px;
+        padding: 30px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .registration-container {
+        margin: 100px;
         padding: 30px;
     }
 }

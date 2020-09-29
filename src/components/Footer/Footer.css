@@ -3,4 +3,25 @@ footer {
     background-color: #DEC79B;
     margin: 0;
     padding: 20px;
+    width: 100%;
+}
+
+.contact {
+    font-size: 26px;
+}
+
+.contact-icon a {
+    padding: 5px;
+    color: #18181E !important;
+}
+
+.copyright {
+    padding: 5px;
+}
+
+@media screen and (min-width: 400px) {
+    footer {
+        display: flex;
+        justify-content: space-between;
+    }
 }

@@ -35,13 +35,14 @@ export default class RegistrationForm extends Component {
                 <h2>Register</h2>
                 <p>Registered users can select their favorite permits and quickly retrieve their details later.</p>
                 <p>Save time and register below.</p>
+                <p className="demo">Your password must contain 1 upper case, lower case, number and special character. It must also be between 8 and 72 characters.</p>
                 {this.state.onRegistrationSuccess ? <p className='success'>Success! We have saved your credentials. You can now log in to save favorites.</p> : ''}
                 <form onSubmit={this.handleSubmit}>
                     <section className="registration-form">
                         <div role='alert'>
                             {error && <p className='error'>{error}</p>}
                         </div>
-                        <div>
+                        <div className='input-typ'>
                             <label htmlFor="username">
                                 Username <Required />
                             </label>
@@ -52,7 +53,7 @@ export default class RegistrationForm extends Component {
                                 id='RegistrationForm__user_name'>
                             </Input>
                         </div>
-                        <div>
+                        <div className='input-typ'>
                             <label htmlFor="password">
                                 Password <Required />
                             </label>
