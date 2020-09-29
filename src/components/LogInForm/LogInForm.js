@@ -14,6 +14,7 @@ export default class LoginForm extends Component {
 
     state = { error: null }
 
+    // posts user credentials to the server once user submits
     handleSubmitJwtAuth = ev => {
         ev.preventDefault()
         this.setState({ error: null })

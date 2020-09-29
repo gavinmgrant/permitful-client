@@ -6,6 +6,7 @@ import TokenService from '../../services/token-service';
 import FavoritesItem from '../FavoritesItem/FavoritesItem';
 import './FavoritesList.css';
 
+// provides auth token for SWR React Hook below
 const fetcher = url => fetch(url, {
     headers: {
         'content-type': 'application/json',

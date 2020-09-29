@@ -12,11 +12,13 @@ const containerStyle = {
   height: '100vh'
 };
 
+// centers the Google Maps location on San Francisco
 const center = {
   lat: 37.73572,
   lng: -122.431297
 };
 
+// loads in the map style from Snazzy Maps and removes the default Google Maps UI controls
 const options = {
   styles: mapStyle,
   disableDefaultUI: true
@@ -25,6 +27,7 @@ const options = {
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 export default function PermitMap() {
+  // React Hooks that set the initial state for the external API permit data
   const [permitNumber, setPermitNumber] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
   const [streetName, setStreetName] = useState('');
@@ -34,6 +37,7 @@ export default function PermitMap() {
   const [statusDate, setStatusDate] = useState('');
   const [permitStatus, setPermitStatus] = useState('');
 
+  // Google Maps React Hook useLoadScript that tells you when the Google script is ready
   const { isLoaded, loadError } = useLoadScript({
     googleMapsApiKey: process.env.REACT_APP_GOOGLE_MAPS_API_KEY,
     libraries,
@@ -70,7 +74,7 @@ export default function PermitMap() {
   // if click outside of marker, set detail area (controlled by the status date) to default
   const handleClick = () => setStatusDate('');
   
-  if (loadError) return "Error";
+  if (loadError) return "Error loading the map.";
   if (!isLoaded) return "Loading the map...";
 
   return (
@@ -94,6 +98,10 @@ export default function PermitMap() {
               <Marker 
                 key={permit.record_id}
                 clickable={true}
+                icon={{
+                  url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/240px-Map_marker_font_awesome.svg.png",
+                  scaledSize: new window.google.maps.Size(32,32),
+                }}
                 onClick={() => {
                   setPermitNumber(permit.permit_number);
                   setStreetNumber(permit.street_number);
@@ -106,6 +114,7 @@ export default function PermitMap() {
                 }}
                 position={{ lat: parseFloat(permit.location.latitude),
                   lng: parseFloat(permit.location.longitude) }} 
+                
               />
           ) : ''
         ))}

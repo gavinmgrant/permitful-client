@@ -15,6 +15,7 @@ function refreshPage() {
 export default function Results(props) {
     const context = useContext(PermitfulContext);
 
+    // posts new favorite to server
     const handleFavorite = (num) => {
         const favorited = {
             permit_number: num,
@@ -50,18 +51,20 @@ export default function Results(props) {
     const addressName = addressArr[1];
     const addressSuffix = addressArr[2].slice(0, -1);
 
+    // fetches permits from the external API using the SWR React Hook
     const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
-
     const url = "https://data.sfgov.org/resource/i98e-djp9.json?street_number=" + addressNum + "&street_name=" + addressName + "&$$app_token=" + appToken + "&$order=status_date DESC";
     const { data, error } = useSWR(url, fetcher);
     const results = data && !error ? data : [];
 
+    // checks if the current permit selected is in the favorites list
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
         const favs = context.favorites.map(( { permit_number }) => permit_number)
         return favs.some(isFavorite);
     };
 
+    // returns a new array of the permits for the subject property
     const searchResults = results.map(result => 
         <details key={result.record_id} className="results-item">
             <summary>

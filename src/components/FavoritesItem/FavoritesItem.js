@@ -10,13 +10,15 @@ const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 export default function FavoriteItem(props) {
     const context = useContext(PermitfulContext);
+
+    // fetches the permit details from the external API using the SWR React Hook
     const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
     const favoritePermit = props.permit_number;
-
     const url = "https://data.sfgov.org/resource/i98e-djp9.json?permit_number=" + favoritePermit + "&$$app_token=" + appToken;
     const { data, error } = useSWR(url, fetcher);
     const permits = data && !error ? data : [];
 
+    // deletes selected permit from the database
     const handleDeleteFavorite = () => {
         const favoriteToDelete = props.permit_number;
 

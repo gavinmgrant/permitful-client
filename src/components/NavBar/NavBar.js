@@ -9,6 +9,7 @@ export default class NavBar extends Component {
         window.location.reload(false);
     }
 
+    // renders the links for when users are signed in
     renderLogoutLink() {
         return (
             <div className='navbar-logged-in'>
@@ -31,6 +32,7 @@ export default class NavBar extends Component {
         )
     }
 
+    // renders the links for when no user is signed in
     renderLoginLink() {
         return (
             <div className='navbar-not-logged-in'>

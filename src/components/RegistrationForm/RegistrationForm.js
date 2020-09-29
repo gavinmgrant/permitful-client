@@ -9,6 +9,7 @@ export default class RegistrationForm extends Component {
         onRegistrationSuccess: false
     };
 
+    // posts user credentials to the server once user submits
     handleSubmit = ev => {
         ev.preventDefault()
         const { user_name, password } = ev.target

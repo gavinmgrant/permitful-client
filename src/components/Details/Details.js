@@ -11,6 +11,7 @@ export default function Details(props) {
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
 
+    // fetches favorites from the database
     const handleFavorite = () => {
         const favorited = {
             permit_number: props.permitNumber,
@@ -40,6 +41,7 @@ export default function Details(props) {
         })
     }
 
+    // checks if the current permit selected is in the favorites list
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
         const favs = context.favorites.map(( { permit_number }) => permit_number)
