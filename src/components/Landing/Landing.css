@@ -41,7 +41,7 @@
 }
 
 .landing-sections {
-    margin: 100px 150px;
+    margin: 60px;
 }
 
 .cta-container {
@@ -50,4 +50,10 @@
 
 .cta-button {
     margin: 20px;
+}
+
+@media screen and (min-width: 1024px) {
+    .landing-sections {
+        margin: 100px 150px;
+    }
 }
