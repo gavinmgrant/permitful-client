@@ -3,8 +3,7 @@ import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
 import useSWR from "swr";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash as fasFaTrash } from '@fortawesome/free-solid-svg-icons';
+import { Trash } from '../../utils/Icons';
 import './FavoritesItem.css';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
@@ -64,7 +63,7 @@ export default function FavoriteItem(props) {
                 </div>
             ))}
             <button onClick={handleDeleteFavorite}>
-                <FontAwesomeIcon icon={fasFaTrash} />
+                {Trash}
             </button>
         </details>
     );

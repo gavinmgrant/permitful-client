@@ -73,22 +73,23 @@ h2 {
 }
 
 .heart-button {
-  color: #ffffff;
+  color: #18181E;
   background: none;
-  border: 2px solid #ffffff;
+  border: none;
+  margin: 0;
 }
 
-.heart-button:hover {
-  color: #777777;
-  background-color: #ffffff;
+.heart-button:focus {
+  border: none;
 }
 
 .heart-button:disabled {
-  color: #ffffff;
+  color: #18181E;
 }
 
 .heart-button:disabled:hover {
   background: none;
+  cursor: not-allowed;
 }
 
 a {
