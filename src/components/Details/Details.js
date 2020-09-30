@@ -57,7 +57,7 @@ export default function Details(props) {
             ) : (
                 <div className="details-result">
                     
-                    <h2>{props.streetNumber} {props.streetName} {props.streetSuffix} 
+                    <h2 className="details-address">{props.streetNumber} {props.streetName} {props.streetSuffix} 
                         {props.unitNumber ? <span>
                             &nbsp;Unit {props.unitNumber}
                         </span> : ''}
