@@ -1,12 +1,16 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import TokenService from '../../services/token-service';
+import IdleService from '../../services/idle-service';
 import './NavBar.css';
 
 export default class NavBar extends Component {
     handleLogoutClick = () => {
         TokenService.clearAuthToken();
         window.location.reload(false);
+        // when logging out, clear the callbacks to the refresh api and idle auto logout
+        TokenService.clearCallbackBeforeExpiry()
+        IdleService.unRegisterIdleResets()
     }
 
     // renders the links for when users are signed in
