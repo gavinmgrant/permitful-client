@@ -1,6 +1,6 @@
 # Permitful
 
-Permitful provides an interactive map that allows users to visualize where all of the most recently updated building permits in a specific jurisdiction are located. San Francisco is the first supported jurisdiction.
+Permitful provides an interactive map that allows users to visualize where all of the most recently updated building permits in a specific jurisdiction are located. **The City and County of San Francisco** is the first supported jurisdiction.
 
 * Users can search for an address and find any building permit on file for that property.
 * Once your search finds a property, Permitful lists any building permits on file. For each permit, you will find its permit number, status, and a brief description.
@@ -16,19 +16,19 @@ View the server side code in this [GitHub repo](https://github.com/gavinmgrant/p
 
 ## User Flow
 
-Users arrive on a landing page that lists the main features of the app.
+Users arrive on a landing page that lists the main features of the app.<br>
 ![User flow GIF of Permitful landing](./src/images/user-flow_landing.gif)
 
-Users click the "get started" button to go to the permit map where they see the latest building permits in the city and can click the markers to see the permit's details.
+Users click the "get started" button to go to the permit map where they see the latest building permits in the city and can click the markers to see the permit's details.<br>
 ![User flow GIF of Permitful details](./src/images/user-flow_marker-details.gif)
 
-Users may search for an address and find all building permits available for that property, if any.
+On the permit map, users may search for an address and find all building permits available for that property, if any are on record with the building department.<br>
 ![User flow GIF of Permitful address search](./src/images/user-flow_address-search.gif)
 
-Users interested in seeing the latest permits and patterns of development can incrementally increase the marker count.
+Users interested in seeing the latest permits and patterns of development can incrementally increase the marker count.<br>
 ![User flow GIF of Permitful marker count](./src/images/user-flow_marker-count.gif)
 
-Registered users can log in to access a list of favorite permits and add more favorites to their list.
+Registered users can log in to access a list of favorite permits and add more favorites to their list.<br>
 ![User flow GIF of Permitful login process and favorites](./src/images/user-flow_login-favorite.gif)
 
 ## Available Scripts

@@ -22,7 +22,7 @@ export default function Landing() {
       <section className='landing-sections'>
         <h2>{CheckCircle} View the most recent building permits map</h2>
         <p>Permitful provides an interactive map that allows users to visualize where all of the most recently updated building permits in a specific jurisdiction are located.</p>
-        <p><span className="bold">San Francisco</span> is the first supported jurisdiction.</p>
+        <p><span className="bold">The City and County of San Francisco</span> is the first supported jurisdiction.</p>
       </section>
 
       <section className='landing-sections'>
