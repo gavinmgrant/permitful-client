@@ -19,7 +19,7 @@ View the server side code in this [GitHub repo](https://github.com/gavinmgrant/p
 * [JavaScript ES6](https://www.javascript.com/) - Programming language
 * [React](https://reactjs.org/) - JS library for UI
 * [CSS](https://developer.mozilla.org/en-US/docs/Web/CSS) - Stylesheet language
-* [HTML5]https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - Markup language
+* [HTML5](https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/HTML5) - Markup language
 * [a11y](https://www.a11yproject.com/) - Accessibility
 * [Enzyme](https://github.com/enzymejs/enzyme) - Testing
 * [Vercel](https://vercel.com/) - Cloud platform for deployment
