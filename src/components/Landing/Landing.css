@@ -64,6 +64,10 @@
     margin: 20px;
 }
 
+.photo-credit {
+    margin: 100px 50px;
+}
+
 @media screen and (min-width: 1024px) {
     .landing-sections {
         margin: 100px 150px;

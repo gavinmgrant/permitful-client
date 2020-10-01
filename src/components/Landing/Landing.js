@@ -54,6 +54,9 @@ export default function Landing() {
           </Link>
         </section>
       }
+      <p className='photo-credit'>
+        Photo above by <a href="https://unsplash.com/@robertbye?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Robert Bye</a> on <a href="https://unsplash.com/@robertbye?utm_source=unsplash&amp;utm_medium=referral&amp;utm_content=creditCopyText">Unsplash</a>
+      </p>
     </section>
   );
 }
