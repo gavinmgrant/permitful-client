@@ -1,7 +1,7 @@
 import React from 'react';
 import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
-import { CheckCircle } from '../../utils/Icons';
+import { CheckCircle, HeartOutline } from '../../utils/Icons';
 import './Landing.css';
 
 export default function Landing() {
@@ -37,7 +37,7 @@ export default function Landing() {
 
       <section className='landing-sections'>
         <h2>{CheckCircle} Save your favorites</h2>
-        <p>Registered users can select their favorite permits and quickly retrieve their details later. Save time and register.</p>
+        <p>Registered users can select their favorite permits and quickly retrieve their details later. Click the {HeartOutline} to save the permit to your favorites. The {HeartOutline} icon will only appear when you are logged in. Save time and register.</p>
       </section>
 
       {TokenService.hasAuthToken() ? "" :

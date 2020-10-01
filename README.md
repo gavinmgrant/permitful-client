@@ -4,7 +4,7 @@ Permitful provides an interactive map that allows users to visualize where all o
 
 * Users can search for an address and find any building permit on file for that property.
 * Once your search finds a property, Permitful lists any building permits on file. For each permit, you will find its permit number, status, and a brief description.
-* Registered users can select their favorite permits and quickly retrieve their details later. Save time and register.
+* Registered users can select their favorite permits and quickly retrieve their details later.
 
 ## Live App
 
@@ -13,6 +13,16 @@ See a live version of this app here: [permitful.com](https://permitful.com/).
 ## Permitful Server
 
 View the server side code in this [GitHub repo](https://github.com/gavinmgrant/permitful-api).
+
+## Technology
+
+* JavaScript ES6
+* React
+* CSS (vanilla without any frameworks)
+* HTML5
+* a11y (accessibility)
+* Enzyme (for testing)
+* Deployed via [Vercel](https://vercel.com/)
 
 ## User Flow
 
