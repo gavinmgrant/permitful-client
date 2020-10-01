@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PermitfulContext from '../../contexts/PermitfulContext';
 import { Link } from 'react-router-dom';
 import useSWR from "swr";
 import config from '../../config';
@@ -15,6 +16,8 @@ const fetcher = url => fetch(url, {
 }).then(r => r.json())
 
 export default function FavoritesList() {
+    const context = useContext(PermitfulContext);
+
     // get saved favorite permit numbers from the server
     const url = `${config.API_ENDPOINT}/favorites`;
     const { data, error } = useSWR(url, fetcher);
@@ -23,6 +26,7 @@ export default function FavoritesList() {
     return (
         <div className='favorites-list'>
             <h2>Favorites</h2>
+            <h3>{context.userName ? <span className='white'> Welcome back, {context.userName}!</span> : null}</h3>
             <ul>
                 {favorites.map(favorite => 
                     <li 

@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PermitfulContext from '../../contexts/PermitfulContext';
 import { Link } from 'react-router-dom';
 // import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
@@ -8,11 +9,11 @@ import './LogInForm.css';
 export default class LoginForm extends Component {
     static defaultProps = {
         onLoginSuccess: () => {
-            window.location.reload(false);
         }
-    }
+    };
+    static contextType = PermitfulContext;
 
-    state = { error: null }
+    state = { error: null };
 
     // posts user credentials to the server once user submits
     handleSubmitJwtAuth = ev => {
@@ -23,17 +24,22 @@ export default class LoginForm extends Component {
         AuthApiService.postLogin({
             user_name: user_name.value,
             password: password.value,
-        })
+            })
             .then(res => {
+                this.context.setUserId(res.user_id)
+                this.context.setUserName(res.user_name)
+            })
+            .then(res => {
+                this.context.setUserId(res.user_id)
                 user_name.value = ''
                 password.value = ''
                 // TokenService.saveAuthToken(res.authToken)
                 this.props.onLoginSuccess()
-        })
+            })
             .catch(res => {
                 this.setState({ error: res.error })
-        })
-    }
+            })
+    };
 
     render() {
         const { error } = this.state
@@ -82,4 +88,4 @@ export default class LoginForm extends Component {
             </section>
         )
     }
-}
+};

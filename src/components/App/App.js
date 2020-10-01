@@ -20,9 +20,23 @@ class App extends Component {
   constructor(props) {
     super(props);
       this.state = {
+        userId: 1,
+        userName: null,
         favorites: [],
         error: null
       }
+  };
+
+  handleSetUserId = id => {
+    this.setState({
+      userId: id
+    })
+  };
+
+  handleSetUserName = name => {
+    this.setState({
+      userName: name
+    })
   };
 
   handleAddFavorite = favorite => {
@@ -92,10 +106,15 @@ class App extends Component {
 
   render() {
     const value = {
+      userId: this.state.userId,
+      userName: this.state.userName,
       favorites: this.state.favorites,
+      setUserId: this.handleSetUserId,
+      setUserName: this.handleSetUserName,
       addFavorite: this.handleAddFavorite,
       deleteFavorite: this.handleDeleteFavorite,
-    };
+    }
+
     return (
       <PermitfulContext.Provider value={value}>
         <main className='app'>
@@ -110,7 +129,7 @@ class App extends Component {
           <Footer />
         </main>
       </PermitfulContext.Provider>
-    );
+    )
   }
 }
 

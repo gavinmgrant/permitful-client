@@ -19,7 +19,7 @@ export default function Results(props) {
     const handleFavorite = (num) => {
         const favorited = {
             permit_number: num,
-            user_id: 1
+            user_id: context.userId
         }
         fetch(`${config.API_ENDPOINT}/favorites`, {
             method: 'POST',
@@ -60,7 +60,8 @@ export default function Results(props) {
     // checks if the current permit selected is in the favorites list
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
-        const favs = context.favorites.map(( { permit_number }) => permit_number)
+        const favs = context.favorites.map(({ permit_number }) => permit_number)
+        console.log(favs);
         return favs.some(isFavorite);
     };
 

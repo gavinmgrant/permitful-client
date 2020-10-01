@@ -17,7 +17,6 @@ export default function FavoriteItem(props) {
     const url = "https://data.sfgov.org/resource/i98e-djp9.json?permit_number=" + favoritePermit + "&$$app_token=" + appToken;
     const { data, error } = useSWR(url, fetcher);
     const permits = data && !error ? data : [];
-    const favorites = context.favorites;
 
     // deletes selected permit from the database
     const handleDeleteFavorite = () => {
