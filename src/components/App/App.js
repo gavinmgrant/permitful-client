@@ -52,6 +52,12 @@ class App extends Component {
     window.location.reload(false);
   };
 
+  handleSetFavorites = favs => {
+    this.setState({
+      favorites: favs
+    })
+  };
+
   componentDidMount() {
     fetch(`${config.API_ENDPOINT}/favorites`, {
       method: 'GET',
@@ -113,6 +119,7 @@ class App extends Component {
       setUserName: this.handleSetUserName,
       addFavorite: this.handleAddFavorite,
       deleteFavorite: this.handleDeleteFavorite,
+      setFavorites: this.handleSetFavorites,
     }
 
     return (

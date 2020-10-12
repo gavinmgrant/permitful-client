@@ -21,14 +21,15 @@ export default function FavoritesList() {
     // get saved favorite permit numbers from the server
     const url = `${config.API_ENDPOINT}/favorites`;
     const { data, error } = useSWR(url, fetcher);
-    const favorites = data && !error ? data : [];
-    
+    const validFavorites = data && !error ? data : [];
+    context.setFavorites(validFavorites);
+
     return (
         <div className='favorites-list'>
             <h2>Favorites</h2>
             <h3>{context.userName ? <span className='white'> Welcome back, {context.userName}!</span> : null}</h3>
             <ul>
-                {favorites.map(favorite => 
+                {context.favorites.map(favorite => 
                     <li 
                         key={favorite.id}
                         className="favorite-permit-li"
