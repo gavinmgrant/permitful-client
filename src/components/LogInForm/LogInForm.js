@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PermitfulContext from '../../contexts/PermitfulContext';
 import { Link } from 'react-router-dom';
-// import TokenService from '../../services/token-service'
+import TokenService from '../../services/token-service'
 import AuthApiService from '../../services/auth-api-service'
 import { Button, Input } from '../../utils/Utils'
 import './LogInForm.css';
@@ -28,12 +28,9 @@ export default class LoginForm extends Component {
             .then(res => {
                 this.context.setUserId(res.user_id)
                 this.context.setUserName(res.user_name)
-            })
-            .then(res => {
-                this.context.setUserId(res.user_id)
                 user_name.value = ''
                 password.value = ''
-                // TokenService.saveAuthToken(res.authToken)
+                TokenService.saveAuthToken(res.authToken)
                 this.props.onLoginSuccess()
             })
             .catch(res => {
