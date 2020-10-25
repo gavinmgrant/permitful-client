@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Input, Required } from '../../utils/Utils';
 import AuthApiService from '../../services/auth-api-service';
+import { Link } from 'react-router-dom';
 import './RegistrationForm.css';
 
 export default class RegistrationForm extends Component {  
@@ -36,6 +37,11 @@ export default class RegistrationForm extends Component {
                 <h2>Register</h2>
                 <p>Registered users can select their favorite permits and quickly retrieve their details later.</p>
                 <p>Save time and register below.</p>
+                <p>Do you want to just demo being a user?{' '}
+                    <span>
+                        <Link to='/login'>Login here with demo credentials</Link>
+                    </span>.
+                </p>
                 <p className="demo">Your password must contain 1 upper case, lower case, number and special character. It must also be between 8 and 72 characters.</p>
                 {this.state.onRegistrationSuccess ? <p className='success'>Success! We have saved your credentials. You can now log in to save favorites.</p> : ''}
                 <form onSubmit={this.handleSubmit}>
