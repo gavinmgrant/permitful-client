@@ -86,7 +86,6 @@ export default function Details(props) {
                 </div>
             ) : (
                 <div className="details-result">
-                    
                     <h2 className="details-address">{props.streetNumber} {props.streetName} {props.streetSuffix} 
                         {props.unitNumber ? <span>
                             &nbsp;Unit {props.unitNumber}
@@ -94,7 +93,7 @@ export default function Details(props) {
                     </h2>
                     <div className="details-block">
                         <h3>
-                            <span className="bold">Permit Number</span>: {props.permitNumber}
+                            {isLoading ? 'Updating your favorites!' : `Permit Number: ${props.permitNumber}`}
                         </h3>
                         <p><span className="bold">Status Date</span>: {formattedDate}</p>
                         <p><span className="bold">Permit Status</span>: {props.permitStatus}</p>
@@ -106,9 +105,7 @@ export default function Details(props) {
                                 className="heart-button"
                             >
                                 {!checkIfFavorite(props.permitNumber) ? HeartOutline : HeartSolid}
-                                
                             </button> : ''}
-                        <section className="updating">{isLoading ? ' updating your favorites!' : ''}</section>
                     </div> 
                 </div>
             )}

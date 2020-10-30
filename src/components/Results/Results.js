@@ -113,7 +113,7 @@ export default function Results(props) {
                     >
                         {!checkIfFavorite(result.permit_number) ? HeartOutline : HeartSolid}
                     </button> : ''}  
-                <section className="updating">{isLoading ? ' updating your favorites!' : ''}</section>                 
+                    <p>{isLoading ? ' updating your favorites!' : ''}</p>             
             </div>
         </details>
     );
