@@ -77,6 +77,8 @@ h2 {
   background: none;
   border: none;
   margin: 0;
+  outline: none;
+  font-size: 28px;
 }
 
 .heart-button:focus {
@@ -90,6 +92,10 @@ h2 {
 .heart-button:disabled:hover {
   background: none;
   cursor: not-allowed;
+}
+
+.updating {
+  font-family: 'Quicksand', sans-serif;
 }
 
 a {

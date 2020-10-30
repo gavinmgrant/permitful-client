@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
@@ -7,12 +7,14 @@ import './Details.css';
 
 export default function Details(props) {
     const context = useContext(PermitfulContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
 
     // fetches favorites from the database
     const handleFavorite = () => {
+        setIsLoading(true);
         const favorited = {
             permit_number: props.permitNumber,
             user_id: context.userId
@@ -38,6 +40,34 @@ export default function Details(props) {
         })
         .catch(error => {
             console.error({ error });
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
+    }
+
+    // deletes selected permit from the database
+    const handleDeleteFavorite = () => {
+        setIsLoading(true);
+        const favoriteToDelete = props.permitNumber;
+        fetch(`${config.API_ENDPOINT}/favorites/${favoriteToDelete}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+        .then(res => {
+            if (!res.ok) 
+                throw new Error(`Could not delete permit number ${favoriteToDelete}.`)
+            return
+            })
+        .then(() => {
+            context.deleteFavorite(favoriteToDelete)
+            setIsLoading(false)
+        })
+        .catch(error => {
+            console.error({ error })
         })
     }
 
@@ -71,13 +101,14 @@ export default function Details(props) {
                         <p><span className="bold">Description</span>: {props.permitDescription}</p>
                         {TokenService.hasAuthToken() ?
                             <button 
-                                disabled={checkIfFavorite(props.permitNumber)}
-                                onClick={handleFavorite}
+                                disabled={isLoading}
+                                onClick={!checkIfFavorite(props.permitNumber) ? handleFavorite : handleDeleteFavorite}
                                 className="heart-button"
                             >
                                 {!checkIfFavorite(props.permitNumber) ? HeartOutline : HeartSolid}
-                            </button> 
-                        : ''}
+                                
+                            </button> : ''}
+                        <section className="updating">{isLoading ? ' updating your favorites!' : ''}</section>
                     </div> 
                 </div>
             )}

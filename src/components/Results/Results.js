@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
@@ -14,9 +14,11 @@ function refreshPage() {
 
 export default function Results(props) {
     const context = useContext(PermitfulContext);
+    const [isLoading, setIsLoading] = useState(false);
 
     // posts new favorite to server
     const handleFavorite = (num) => {
+        setIsLoading(true);
         const favorited = {
             permit_number: num,
             user_id: context.userId
@@ -39,9 +41,35 @@ export default function Results(props) {
         })
         .then(data => {
             context.addFavorite({...data, favorited})
+            setIsLoading(false);
         })
         .catch(error => {
             console.error({ error });
+        })
+    }
+
+    // deletes selected permit from the database
+    const handleDeleteFavorite = (num) => {
+        setIsLoading(true);
+        const favoriteToDelete = num;
+        fetch(`${config.API_ENDPOINT}/favorites/${favoriteToDelete}`, {
+            method: 'DELETE',
+            headers: {
+                'content-type': 'application/json',
+                'authorization': `bearer ${TokenService.getAuthToken()}`,
+            }
+        })
+        .then(res => {
+            if (!res.ok) 
+                throw new Error(`Could not delete permit number ${favoriteToDelete}.`)
+            return
+            })
+        .then(() => {
+            context.deleteFavorite(favoriteToDelete)
+            setIsLoading(false)
+        })
+        .catch(error => {
+            console.error({ error })
         })
     }
 
@@ -61,7 +89,7 @@ export default function Results(props) {
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
         const favs = context.favorites.map(({ permit_number }) => permit_number)
-        console.log(favs);
+        // console.log(favs);
         return favs.some(isFavorite);
     };
 
@@ -79,12 +107,13 @@ export default function Results(props) {
                 <p><span className="bold">Description: </span>{result.description}</p>
                 {TokenService.hasAuthToken() ?
                     <button 
-                        disabled={checkIfFavorite(result.permit_number)}
-                        onClick={() => handleFavorite(result.permit_number)}
+                        disabled={isLoading}
+                        onClick={!checkIfFavorite(result.permit_number) ? () => handleFavorite(result.permit_number) : () => handleDeleteFavorite(result.permit_number)}
                         className="heart-button"
                     >
                         {!checkIfFavorite(result.permit_number) ? HeartOutline : HeartSolid}
-                    </button> : ''}                   
+                    </button> : ''}  
+                <section className="updating">{isLoading ? ' updating your favorites!' : ''}</section>                 
             </div>
         </details>
     );
