@@ -44,7 +44,7 @@ export default class LoginForm extends Component {
             <section className="login-container">
                 <h2>Log In</h2>
                 <p>Welcome back! Please log in below to access your favorites.</p>
-                <p>If you'd like to register for an account at Permitful,{' '}
+                <p className="italic">If you'd like to register for an account at Permitful,{' '}
                     <span>
                         <Link to='/register'>register here</Link>
                     </span>.

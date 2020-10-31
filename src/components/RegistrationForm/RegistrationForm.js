@@ -36,8 +36,7 @@ export default class RegistrationForm extends Component {
             <section className="registration-container">
                 <h2>Register</h2>
                 <p>Registered users can select their favorite permits and quickly retrieve their details later.</p>
-                <p>Save time and register below.</p>
-                <p>Do you want to just demo being a user?{' '}
+                <p className="italic">Do you want to just demo being a user?{' '}
                     <span>
                         <Link to='/login'>Login here with demo credentials</Link>
                     </span>.
