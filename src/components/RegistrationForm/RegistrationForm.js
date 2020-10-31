@@ -7,15 +7,16 @@ import './RegistrationForm.css';
 export default class RegistrationForm extends Component {  
     state = { 
         error: null,
-        onRegistrationSuccess: false
+        onRegistrationSuccess: false,
+        isLoading: false
     };
 
     // posts user credentials to the server once user submits
     handleSubmit = ev => {
         ev.preventDefault()
+        this.setState({ error: null, isLoading: true })
         const { user_name, password } = ev.target
     
-        this.setState({ error: null })
         AuthApiService.postUser({
           user_name: user_name.value,
           password: password.value,
@@ -27,6 +28,9 @@ export default class RegistrationForm extends Component {
         })
         .catch(res => {
             this.setState({ error: res.error })
+        })
+        .finally(() => {
+            this.setState({ isLoading: false })
         })
     };
 
@@ -72,7 +76,7 @@ export default class RegistrationForm extends Component {
                         </div> 
                     </section>
                     <Button type='submit'>
-                        Register
+                    {!this.state.isLoading ? 'Register' : 'Success!'}
                     </Button>
                 </form>
             </section>

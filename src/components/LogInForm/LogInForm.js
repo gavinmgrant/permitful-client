@@ -13,12 +13,15 @@ export default class LoginForm extends Component {
     };
     static contextType = PermitfulContext;
 
-    state = { error: null };
+    state = { 
+        error: null, 
+        isLoading: false 
+    };
 
     // posts user credentials to the server once user submits
     handleSubmitJwtAuth = ev => {
         ev.preventDefault()
-        this.setState({ error: null })
+        this.setState({ error: null, isLoading: true })
         const { user_name, password } = ev.target
     
         AuthApiService.postLogin({
@@ -35,6 +38,9 @@ export default class LoginForm extends Component {
             })
             .catch(res => {
                 this.setState({ error: res.error })
+            })
+            .finally(() => {
+                this.setState({ isLoading: false })
             })
     };
 
@@ -79,7 +85,7 @@ export default class LoginForm extends Component {
                         </div> 
                     </section>
                     <Button type='submit'>
-                        Login
+                        {!this.state.isLoading ? 'Login' : 'Success! Loading your favorites.'}
                     </Button>
                 </form>
             </section>

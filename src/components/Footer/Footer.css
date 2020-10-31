@@ -7,15 +7,19 @@ footer {
 }
 
 .contact {
-    font-size: 24px;
+    font-size: 32px;
     margin-left: 10px;
-    margin-top: auto;
+    margin-top: 5px;
     margin-bottom: auto;
 }
 
 .contact-icon a {
     padding: 10px;
     color: #18181E !important;
+}
+
+.contact-icon:hover {
+    opacity: 0.7;
 }
 
 .copyright {
