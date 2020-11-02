@@ -18,7 +18,7 @@ export default function Footer() {
                 </span>
             </section>
             <section className='copyright'>
-                Copyright © 2020 Permitful
+                Copyright © 2020 <a href='https://gavingrant.dev/' target='_blank' rel='noopener noreferrer' style={{color: '#000000'}}>Gavin Grant</a>
             </section>
         </footer>
     )
