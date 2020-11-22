@@ -56,9 +56,9 @@ export default class FavoritesList extends Component {
 
     render() {
         return (
-            <div className='favorites-list'>
+            <div className="favorites-list">
                 <h2>Favorites</h2>
-                <h3>{this.context.userName ? <span className='white'> Welcome back, {this.context.userName}!</span> : null}</h3>
+                <h3>{this.context.userName ? <span className="white"> Welcome back, {this.context.userName}!</span> : null}</h3>
                 <ul>
                     {this.context.favorites.map(favorite => 
                         <li 
@@ -73,6 +73,9 @@ export default class FavoritesList extends Component {
                 <Link to="/map">
                     <button className="restart-button">Start new search</button>
                 </Link>
+                <section className="demo">
+                  If you want to know if a property could be a good investment, try rental property calculator <a href="https://soundlyinvest.com/" target="_blank" rel="noopener noreferrer" className="soundlyinvest-link">SoundlyInvest</a> to determine your gross rent multiplier, cap rate, and cash flow.    
+                </section>
             </div>
         );
     }

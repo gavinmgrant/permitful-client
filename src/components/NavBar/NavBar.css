@@ -40,12 +40,13 @@ li {
 .nav-bar,
 .nav-bar:visited {
     color: #18181E;
+    margin-left: 5px;
 }
 
 @media screen and (min-width: 400px) {
     nav {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: space-between;
     }
 }
 
