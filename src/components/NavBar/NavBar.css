@@ -45,7 +45,7 @@ li {
 @media screen and (min-width: 400px) {
     nav {
         display: flex;
-        justify-content: space-between;
+        justify-content: space-evenly;
     }
 }
 
