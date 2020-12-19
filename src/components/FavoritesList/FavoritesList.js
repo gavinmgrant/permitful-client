@@ -73,7 +73,7 @@ export default class FavoritesList extends Component {
                 <Link to="/map">
                     <button className="restart-button">Start new search</button>
                 </Link>
-                <section className="demo">
+                <section className="demo soundlyinvest">
                   If you want to know if a property could be a good investment, try rental property calculator <a href="https://soundlyinvest.com/" target="_blank" rel="noopener noreferrer" className="soundlyinvest-link">SoundlyInvest</a> to determine your gross rent multiplier, cap rate, and cash flow.    
                 </section>
             </div>

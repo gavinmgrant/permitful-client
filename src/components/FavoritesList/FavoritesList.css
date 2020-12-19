@@ -10,3 +10,8 @@
 .soundlyinvest-link {
     color: #18181E !important;
 }
+
+.demo.soundlyinvest {
+    margin: 40px auto;
+    max-width: 480px;
+}
