@@ -32,11 +32,11 @@
     -o-background-size: cover;
     background-size: auto 100%;
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: scroll;
 }
 
 .landing-hero {
-    margin: 0 auto 175px auto;
+    margin: 0 auto 150px auto;
     animation: fadeInAnimation ease 3s; 
     animation-iteration-count: 1; 
     animation-fill-mode: forwards;
