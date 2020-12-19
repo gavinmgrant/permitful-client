@@ -23,7 +23,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 92vh;
     margin: 0;
     padding: 0;
     background: url("../../images/background.png") no-repeat center center fixed;
@@ -32,12 +32,25 @@
     -o-background-size: cover;
     background-size: cover;
     background-repeat: no-repeat;
-    background-attachment: scroll;
+    background-attachment: fixed;
+    background-image: cover;
 }
 
 .landing-hero {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
     display: flex;
+    -webkit-box-direction: normal;
+    -moz-box-direction: normal;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
     flex-direction: column;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
     justify-content: center;
     width: 300px;
     height: 300px;
@@ -70,6 +83,12 @@
 
 .photo-credit {
     margin: 100px 50px;
+}
+
+@media screen and (min-width: 720px) {
+    .landing-container {
+        height: 100vh;
+    }
 }
 
 @media screen and (min-width: 1024px) {
