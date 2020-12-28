@@ -50,11 +50,6 @@ export default class LoginForm extends Component {
             <section className="login-container">
                 <h2>Log In</h2>
                 <p>Welcome back! Please log in below to access your favorites.</p>
-                <p className="italic">If you'd like to register for an account at Permitful,{' '}
-                    <span>
-                        <Link to='/register'>register here</Link>
-                    </span>.
-                </p>
                 <section className="demo">
                     <p>To demo this site without registering, log in with these credentials:</p>
                     <p>username: <span className="bold">newuser</span></p>
@@ -87,6 +82,11 @@ export default class LoginForm extends Component {
                     <Button type='submit'>
                         {!this.state.isLoading ? 'Login' : 'Success! Loading your favorites.'}
                     </Button>
+                    <p className="italic">If you'd like to register for an account at Permitful,{' '}
+                        <span>
+                            <Link to='/register'>register here</Link>
+                        </span>.
+                    </p>
                 </form>
             </section>
         )
