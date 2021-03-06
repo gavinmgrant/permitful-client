@@ -112,8 +112,8 @@ export default function PermitMap() {
                   setStatusDate(permit.status_date);
                   setPermitStatus(permit.status);
                 }}
-                position={{ lat: parseFloat(permit.location.latitude),
-                  lng: parseFloat(permit.location.longitude) }} 
+                position={{ lat: permit.location.coordinates[1],
+                  lng: permit.location.coordinates[0] }} 
                 
               />
           ) : ''
