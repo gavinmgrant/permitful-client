@@ -19,7 +19,8 @@ class App extends Component {
         userId: 1,
         userName: null,
         favorites: [],
-        error: null
+        error: null,
+        cityName: null
       }
   };
 
@@ -53,6 +54,12 @@ class App extends Component {
     })
   };
 
+  handleSetCityName = name => {
+    this.setState({
+      cityName: name
+    })
+  };
+
   render() {
     const value = {
       userId: this.state.userId,
@@ -63,6 +70,8 @@ class App extends Component {
       addFavorite: this.handleAddFavorite,
       deleteFavorite: this.handleDeleteFavorite,
       setFavorites: this.handleSetFavorites,
+      cityName: this.state.cityName,
+      setCityName: this.handleSetCityName,
     }
 
     return (

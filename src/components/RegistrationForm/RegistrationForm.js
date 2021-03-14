@@ -21,13 +21,13 @@ export default class RegistrationForm extends Component {
           user_name: user_name.value,
           password: password.value,
         })
-        .then(user => {
+        .then(() => {
             user_name.value = ''
             password.value = ''
             this.setState({ onRegistrationSuccess: true })
         })
         .catch(res => {
-            this.setState({ error: res.error })
+            this.setState({ error: Object.values(res.error) })
         })
         .finally(() => {
             this.setState({ isLoading: false })
@@ -42,11 +42,11 @@ export default class RegistrationForm extends Component {
                 <p>Registered users can select their favorite permits and quickly retrieve their details later.</p>
                 <p className="demo">Your password must contain 1 upper case, lower case, number and special character. It must also be between 8 and 72 characters.</p>
                 {this.state.onRegistrationSuccess ? <p className='success'>Success! We have saved your credentials. You can now log in to save favorites.</p> : ''}
+                <div role='alert'>
+                    {error && <p className='error'>{error}</p>}
+                </div>
                 <form onSubmit={this.handleSubmit}>
                     <section className="registration-form">
-                        <div role='alert'>
-                            {error && <p className='error'>{error}</p>}
-                        </div>
                         <div className='input-typ'>
                             <label htmlFor="username">
                                 Username <Required />
@@ -71,11 +71,11 @@ export default class RegistrationForm extends Component {
                         </div> 
                     </section>
                     <Button type='submit'>
-                    {!this.state.isLoading ? 'Register' : 'Success!'}
+                    {!this.state.isLoading ? 'Register' : 'Loading...'}
                     </Button>
                     <p className="italic">Do you want to just demo being a user?{' '}
                         <span>
-                            <Link to='/login'>Login here with demo credentials</Link>
+                            <Link to='/login'>Log in here with demo credentials</Link>
                         </span>.
                     </p>
                 </form>

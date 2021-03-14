@@ -81,7 +81,15 @@ export default function Results(props) {
 
     // fetches permits from the external API using the SWR React Hook
     const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
-    const url = "https://data.sfgov.org/resource/i98e-djp9.json?street_number=" + addressNum + "&street_name=" + addressName + "&$$app_token=" + appToken + "&$order=status_date DESC";
+    let cityURL, queryParams;
+    if (context.cityName === 'SFO') {
+        cityURL = 'https://data.sfgov.org/resource/i98e-djp9.json?street_number=';
+        queryParams = '&$order=status_date DESC';
+    } else if (context.cityName === 'LAX') {
+        cityURL = 'https://data.lacity.org/resource/yv23-pmwf.json?address_start=';
+        queryParams = '&$order=status_date DESC';
+    }
+    const url = cityURL + addressNum + "&street_name=" + addressName + "&$$app_token=" + appToken + queryParams;
     const { data, error } = useSWR(url, fetcher);
     const results = data && !error ? data : [];
 
@@ -89,29 +97,28 @@ export default function Results(props) {
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
         const favs = context.favorites.map(({ permit_number }) => permit_number)
-        // console.log(favs);
         return favs.some(isFavorite);
     };
 
     // returns a new array of the permits for the subject property
     const searchResults = results.map(result => 
-        <details key={result.record_id} className="results-item">
+        <details key={context.cityName === 'SFO' ? result.record_id : result.pcis_permit} className="results-item">
             <summary>
                 <h3>
-                    <span className="bold">Permit Number</span>: {result.permit_number}
+                    <span className="bold">Permit Number</span>: {context.cityName === 'SFO' ? result.permit_number : result.pcis_permit}
                 </h3>
             </summary>
             <div className="results-details">
                 <p><span className="bold">Status Date: </span>{result.status_date.slice(0, 10)}</p>
-                <p><span className="bold">Status: </span>{result.status}</p>
-                <p><span className="bold">Description: </span>{result.description}</p>
+                <p><span className="bold">Status: </span>{context.cityName === 'SFO' ? result.status : result.latest_status}</p>
+                <p><span className="bold">Description: </span>{context.cityName === 'SFO' ? result.description : result.work_description}</p>
                 {TokenService.hasAuthToken() ?
                     <button 
                         disabled={isLoading}
-                        onClick={!checkIfFavorite(result.permit_number) ? () => handleFavorite(result.permit_number) : () => handleDeleteFavorite(result.permit_number)}
+                        onClick={!checkIfFavorite(context.cityName === 'SFO' ? result.permit_number : result.pcis_permit) ? () => handleFavorite(context.cityName === 'SFO' ? result.permit_number : result.pcis_permit) : () => handleDeleteFavorite(context.cityName === 'SFO' ? result.permit_number : result.pcis_permit)}
                         className="heart-button"
                     >
-                        {!checkIfFavorite(result.permit_number) ? HeartOutline : HeartSolid}
+                        {!checkIfFavorite(context.cityName === 'SFO' ? result.permit_number : result.pcis_permit) ? HeartOutline : HeartSolid}
                     </button> : ''}  
                     <p>{isLoading ? ' updating your favorites!' : ''}</p>             
             </div>

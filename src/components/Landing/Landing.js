@@ -1,28 +1,33 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import PermitfulContext from '../../contexts/PermitfulContext';
 import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
 import { CheckCircle, HeartOutline } from '../../utils/Icons';
 import './Landing.css';
 
 export default function Landing() {
+  const context = useContext(PermitfulContext);
+
   return (
     <section className='landing'>
       <section className='landing-container'>
         <div className='landing-hero'>
           <h1 className="title">Permitful</h1>
-          <p className='title-sub'>Visualize and find building permits</p>
-          <Link to='/map'>
-            <button className='title-button'>
-              Get started
-            </button>
-          </Link>
+          <p className='title-sub'>Visualize and find building permits.</p>
+          <p className='title-sub'>Select a jurisdiction:</p>
+          <div className='landing-buttons'>
+            <Link to='/map'>
+              <button className='title-button' onClick={() => context.setCityName('SFO')}>
+                San Francisco
+              </button>
+            </Link>
+          </div>
         </div>
       </section>
 
       <section className='landing-sections'>
         <h2>{CheckCircle} View the most recent building permits map</h2>
         <p>Permitful provides an interactive map that allows users to visualize where all of the most recently updated building permits in a specific jurisdiction are located.</p>
-        <p><span className="bold">The City and County of San Francisco</span> is the first supported jurisdiction.</p>
       </section>
 
       <section className='landing-sections'>
