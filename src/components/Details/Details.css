@@ -4,19 +4,19 @@
     width: 100%;
     background-color: #18181E;
     color: #ffffff;
-    padding: 10px;
+    padding: 5px;
 }
 
 .details-block {
     margin: 10px;
-    padding: 10px;
+    padding: 5px;
     color: #18181E;
     background-color: #DEC79B;
     border-radius: 5px;
 }
 
 .details-address {
-    margin-top: 0;
+    margin: 0;
 }
 
 @media screen and (min-width: 600px) {
@@ -28,6 +28,7 @@
 @media screen and (min-width: 1024px) {
     .details {
         width: 1024px;
+        padding: 10px;
     }
 
     .details-block {

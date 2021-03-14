@@ -4,18 +4,21 @@ footer {
     margin: 0;
     padding: 15px;
     width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .contact {
-    font-size: 32px;
-    margin-left: 10px;
+    font-size: 24px;
+    margin-left: 5px;
     margin-top: 5px;
     margin-bottom: auto;
 }
 
 .contact-icon a {
-    padding: 10px;
+    padding: 0 10px;
     color: #18181E !important;
+    font-size: 1em;
 }
 
 .contact-icon:hover {
@@ -23,14 +26,20 @@ footer {
 }
 
 .copyright {
-    margin-right: 20px;
+    margin-right: 5px;
     margin-top: auto;
     margin-bottom: auto;
+    font-size: 16px;
 }
 
-@media screen and (min-width: 400px) {
-    footer {
-        display: flex;
-        justify-content: space-between;
+@media screen and (min-width: 1024px) {
+    .copyright {
+        margin-right: 20px;
+        font-size: 18px;
+    }
+
+    .contact {
+        font-size: 32px;
+        margin-left: 10px;
     }
 }

@@ -86,15 +86,15 @@ export default function Details(props) {
                 </div>
             ) : (
                 <div className="details-result">
-                    <h2 className="details-address">{props.streetNumber} {props.streetName} {props.streetSuffix} 
+                    <h3 className="details-address">{props.streetNumber} {props.streetName} {props.streetSuffix} 
                         {props.unitNumber ? <span>
                             &nbsp;Unit {props.unitNumber}
                         </span> : ''}
-                    </h2>
+                    </h3>
                     <div className="details-block">
-                        <h3>
+                        <h4>
                             {isLoading ? 'Updating your favorites!' : `Permit Number: ${props.permitNumber}`}
-                        </h3>
+                        </h4>
                         <p><span className="bold">Status Date</span>: {formattedDate}</p>
                         <p><span className="bold">Permit Status</span>: {props.permitStatus}</p>
                         <p><span className="bold">Description</span>: {props.permitDescription}</p>
