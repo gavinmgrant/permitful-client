@@ -132,6 +132,7 @@ export default function PermitMap() {
                   lat: context.cityName === 'SFO' ? permit.location.coordinates[1] : parseFloat(permit.location_1.latitude),
                   lng: context.cityName === 'SFO' ? permit.location.coordinates[0] : parseFloat(permit.location_1.longitude) 
                 }}
+                opacity={0.5}
               />
           ) : ''
         ))}
