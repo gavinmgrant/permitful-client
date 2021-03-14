@@ -78,16 +78,12 @@
     display: block;
 }
 
-.cta-container {
-    margin-bottom: 50px;
-}
-
 .cta-button {
     margin: 20px;
 }
 
 .photo-credit {
-    margin: 100px 50px;
+    margin: 50px 50px;
 }
 
 @media screen and (min-width: 540px) {
@@ -107,5 +103,13 @@
 
     .landing-sections {
         margin: 100px 150px;
+    }
+
+    .cta-container {
+        margin-bottom: 50px;
+    }
+
+    .photo-credit {
+        margin: 100px 50px;
     }
 }
