@@ -71,7 +71,7 @@
 } 
 
 .landing-sections {
-    margin: 60px;
+    margin: 60px 20px;
 }
 
 .landing-buttons {
@@ -83,7 +83,7 @@
 }
 
 .photo-credit {
-    margin: 50px 50px;
+    margin: 50px 20px;
 }
 
 @media screen and (min-width: 540px) {
