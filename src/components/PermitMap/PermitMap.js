@@ -1,4 +1,5 @@
 import React, { useState, useRef, useCallback, useContext } from 'react';
+import { Redirect } from 'react-router';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import { Marker, useLoadScript, GoogleMap } from '@react-google-maps/api';
 import useSWR from "swr";
@@ -52,6 +53,8 @@ export default function PermitMap() {
   const [permitDescription, setPermitDescription] = useState('');
   const [statusDate, setStatusDate] = useState('');
   const [permitStatus, setPermitStatus] = useState('');
+  const [lat, setLat] = useState(null);
+  const [lng, setLng] = useState(null);
 
   // Google Maps React Hook useLoadScript that tells you when the Google script is ready
   const { isLoaded, loadError } = useLoadScript({
@@ -60,9 +63,9 @@ export default function PermitMap() {
   });
 
   const mapRef = useRef();
-    const onMapLoad = useCallback((map) => {
-      mapRef.current = map;
-    }, []);
+  const onMapLoad = useCallback((map) => {
+    mapRef.current = map;
+  }, []);
 
   const panTo = useCallback(({ lat, lng }) => {
     mapRef.current.panTo({ lat, lng });
@@ -102,7 +105,7 @@ export default function PermitMap() {
       />
       {!searchAddress ? <GoogleMap
         mapContainerStyle={containerStyle}
-        center={center}
+        center={!lat ? center : {lat: lat, lng: lng}}
         zoom={11}
         options={options}
         onLoad={onMapLoad}
@@ -127,6 +130,8 @@ export default function PermitMap() {
                   setPermitDescription(context.cityName === 'SFO' ? permit.description : permit.work_description);
                   setStatusDate(permit.status_date);
                   setPermitStatus(context.cityName === 'SFO' ? permit.status : permit.latest_status);
+                  setLat(permit.location.coordinates[1]);
+                  setLng(permit.location.coordinates[0]);
                 }}
                 position={{ 
                   lat: context.cityName === 'SFO' ? permit.location.coordinates[1] : parseFloat(permit.location_1.latitude),
@@ -148,6 +153,7 @@ export default function PermitMap() {
         statusDate={statusDate}
         permitStatus={permitStatus}
       /> : ''}
+      {context.cityName === null && <Redirect to='/'></Redirect>}
     </div>
   );
 }
