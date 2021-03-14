@@ -47,6 +47,10 @@ li {
 }
 
 @media screen and (min-width: 1024px) {
+    nav {
+        padding: 20px;
+    }
+    
     li {
         padding: 10px;
     }
