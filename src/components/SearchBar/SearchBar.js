@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import PermitfulContext from '../../contexts/PermitfulContext';
 import usePlacesAutoComplete, { getGeocode, getLatLng } from "use-places-autocomplete";
 import { Combobox, ComboboxInput, ComboboxPopover, ComboboxList, ComboboxOption } from '@reach/combobox';
 import Results from '../Results/Results';
@@ -6,9 +7,20 @@ import '@reach/combobox/styles.css';
 import './SearchBar.css'
 
 export default function SearchBar(props) {
+  const context = useContext(PermitfulContext);
+
+  // determine the geographic limits of the search bar
+  let cityLat, cityLng;
+  if (context.cityName === 'SFO') {
+    cityLat = 37.773972;
+    cityLng = -122.431297;
+  } else if (context.cityName === 'LAX') {
+    cityLat = 34.0522;
+    cityLng = -118.2437;
+  };
   const { ready, value, suggestions: {status, data}, setValue, clearSuggestions } = usePlacesAutoComplete({
     requestOptions: {
-      location: { lat: () => 37.773972, lng: () => -122.431297 },
+      location: { lat: () => cityLat, lng: () => cityLng },
       radius: 200 * 1000,
     },
   });
@@ -53,7 +65,7 @@ export default function SearchBar(props) {
               setValue(e.target.value);
             }} 
             disabled={!ready}
-            placeholder="Search by SF address"
+            placeholder="Search by address"
           />
           <ComboboxPopover>
             <ComboboxList>

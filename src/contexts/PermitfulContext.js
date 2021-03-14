@@ -6,6 +6,7 @@ const PermitfulContext = React.createContext({
     favorites: [],
     addFavorite: () => {},
     deleteFavorite: () => {},
+    cityName: null,
 });
 
 export default PermitfulContext;

@@ -1,4 +1,5 @@
-import React, { useState, useRef, useCallback } from 'react';
+import React, { useState, useRef, useCallback, useContext } from 'react';
+import PermitfulContext from '../../contexts/PermitfulContext';
 import { Marker, useLoadScript, GoogleMap } from '@react-google-maps/api';
 import useSWR from "swr";
 import { mapStyle } from './MapStyle';
@@ -12,12 +13,6 @@ const containerStyle = {
   height: '100vh'
 };
 
-// centers the Google Maps location on San Francisco
-const center = {
-  lat: 37.73572,
-  lng: -122.431297
-};
-
 // loads in the map style from Snazzy Maps and removes the default Google Maps UI controls
 const options = {
   styles: mapStyle,
@@ -27,6 +22,27 @@ const options = {
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
 export default function PermitMap() {
+  const context = useContext(PermitfulContext);
+
+  // centers Google Maps and sets the city permit API URL based on the selected city
+  let center, cityURL, queryParams;
+
+  if (context.cityName === 'SFO') {
+    center = {
+      lat: 37.73572,
+      lng: -122.431297
+    };
+    cityURL = 'https://data.sfgov.org/resource/i98e-djp9.json?$limit=';
+    queryParams = '&$order=permit_creation_date DESC';
+  } else if (context.cityName === 'LAX') {
+    center = {
+      lat: 34.0522,
+      lng: -118.2437
+    };
+    cityURL = 'https://data.lacity.org/resource/yv23-pmwf.json?$limit=';
+    queryParams = '&$order=status_date DESC';
+  }
+  
   // React Hooks that set the initial state for the external API permit data
   const [permitNumber, setPermitNumber] = useState('');
   const [streetNumber, setStreetNumber] = useState('');
@@ -61,7 +77,7 @@ export default function PermitMap() {
 
   const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
 
-  const url = "https://data.sfgov.org/resource/i98e-djp9.json?$limit=" + markerLimit + "&$$app_token=" + appToken + "&$order=permit_creation_date DESC";
+  const url = cityURL + markerLimit + "&$$app_token=" + appToken + queryParams;
   const { data, error } = useSWR(url, fetcher);
   const permits = data && !error ? data : [];
 
@@ -76,7 +92,7 @@ export default function PermitMap() {
   
   if (loadError) return "Error loading the map.";
   if (!isLoaded) return "Loading the map...";
-
+  
   return (
     <div id='permit-map' className='permit-map'>
       <SearchBar 
@@ -93,28 +109,29 @@ export default function PermitMap() {
         onClick={handleClick}
       >
         {permits.map(permit => (
-          permit.location
+          permit.location || permit.location_1
           ? (
               <Marker 
-                key={permit.record_id}
+                key={context.cityName === 'SFO' ? permit.record_id : permit.pcis_permit}
                 clickable={true}
                 icon={{
                   url: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/Map_marker_font_awesome.svg/240px-Map_marker_font_awesome.svg.png",
                   scaledSize: new window.google.maps.Size(32,32),
                 }}
                 onClick={() => {
-                  setPermitNumber(permit.permit_number);
-                  setStreetNumber(permit.street_number);
+                  setPermitNumber(context.cityName === 'SFO' ? permit.permit_number : permit.pcis_permit);
+                  setStreetNumber(context.cityName === 'SFO' ? permit.street_number : permit.address_start);
                   setStreetName(permit.street_name);
                   setStreetSuffix(permit.street_suffix);
                   setUnitNumber(permit.unit);
-                  setPermitDescription(permit.description);
+                  setPermitDescription(context.cityName === 'SFO' ? permit.description : permit.work_description);
                   setStatusDate(permit.status_date);
-                  setPermitStatus(permit.status);
+                  setPermitStatus(context.cityName === 'SFO' ? permit.status : permit.latest_status);
                 }}
-                position={{ lat: permit.location.coordinates[1],
-                  lng: permit.location.coordinates[0] }} 
-                
+                position={{ 
+                  lat: context.cityName === 'SFO' ? permit.location.coordinates[1] : parseFloat(permit.location_1.latitude),
+                  lng: context.cityName === 'SFO' ? permit.location.coordinates[0] : parseFloat(permit.location_1.longitude) 
+                }}
               />
           ) : ''
         ))}
