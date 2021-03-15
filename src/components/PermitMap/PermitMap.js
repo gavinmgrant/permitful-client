@@ -53,8 +53,8 @@ export default function PermitMap() {
   const [permitDescription, setPermitDescription] = useState('');
   const [statusDate, setStatusDate] = useState('');
   const [permitStatus, setPermitStatus] = useState('');
-  const [lat, setLat] = useState(null);
-  const [lng, setLng] = useState(null);
+  const [lat, setLat] = useState(0);
+  const [lng, setLng] = useState(0);
 
   // Google Maps React Hook useLoadScript that tells you when the Google script is ready
   const { isLoaded, loadError } = useLoadScript({
