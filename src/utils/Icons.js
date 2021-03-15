@@ -6,6 +6,7 @@ import { faCheckCircle as farFaCheckCircle } from '@fortawesome/free-regular-svg
 import { faTrash as fasFaTrash } from '@fortawesome/free-solid-svg-icons';
 import { faEnvelope as fasFaEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faGithub as fabFaGithub } from '@fortawesome/free-brands-svg-icons';
+import { faTimes as fasFaTimes } from '@fortawesome/free-solid-svg-icons';
 
 export const HeartSolid = <FontAwesomeIcon icon={fasFaHeart} />;
 export const HeartOutline = <FontAwesomeIcon icon={farFaHeart} />;
@@ -13,3 +14,4 @@ export const CheckCircle = <FontAwesomeIcon icon={farFaCheckCircle} />;
 export const Trash = <FontAwesomeIcon icon={fasFaTrash} />;
 export const Email = <FontAwesomeIcon icon={fasFaEnvelope} />;
 export const Github = <FontAwesomeIcon icon={fabFaGithub} />;
+export const CloseIcon = <FontAwesomeIcon icon={fasFaTimes} />;

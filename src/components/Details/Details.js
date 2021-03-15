@@ -2,12 +2,13 @@ import React, { useContext, useState } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import config from '../../config';
 import TokenService from '../../services/token-service';
-import { HeartSolid, HeartOutline } from '../../utils/Icons';
+import { HeartSolid, HeartOutline, CloseIcon } from '../../utils/Icons';
 import './Details.css';
 
 export default function Details(props) {
     const context = useContext(PermitfulContext);
     const [isLoading, setIsLoading] = useState(false);
+    const [close, setClose] = useState(false);
 
     const date = props.statusDate
     const formattedDate = date.slice(0, 10);
@@ -81,8 +82,18 @@ export default function Details(props) {
     return (
         <section className="details">
             {formattedDate === '' ? (
-                <div className="details-default">
-                    <p>The most recent permits are shown. Click a marker for permit details. Adjust the number of markers above.</p>
+                <div>
+                    {!close ? (
+                        <div className="details-default">
+                            <p className="details-intro">
+                                The most recent permits are shown. Click a marker for permit details. Adjust the number of markers above.
+                            </p>
+                            <button className="details-close" onClick={() => setClose(true)}>
+                                {CloseIcon}
+                            </button>
+                        </div>
+                    )
+                    : ""}
                 </div>
             ) : (
                 <div className="details-result">
