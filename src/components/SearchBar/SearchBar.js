@@ -10,18 +10,20 @@ export default function SearchBar(props) {
   const context = useContext(PermitfulContext);
 
   // determine the geographic limits of the search bar
-  let cityLat, cityLng;
+  let cityLat, cityLng, citySearchRadius;
   if (context.cityName === 'SFO') {
     cityLat = 37.773972;
     cityLng = -122.431297;
+    citySearchRadius = 8000;
   } else if (context.cityName === 'LAX') {
     cityLat = 34.0522;
     cityLng = -118.2437;
+    citySearchRadius = 25000;
   };
   const { ready, value, suggestions: {status, data}, setValue, clearSuggestions } = usePlacesAutoComplete({
     requestOptions: {
       location: { lat: () => cityLat, lng: () => cityLng },
-      radius: 200 * 1000,
+      radius: citySearchRadius,
     },
   });
 
@@ -71,8 +73,8 @@ export default function SearchBar(props) {
             <ComboboxList>
               {status === "OK" && 
                 data.map(({ description }) => (
-                  <ComboboxOption key={description} value={description} /> 
-                ))}
+                  <div className="search-results" key={description}><ComboboxOption key={description} value={description} /></div>
+              ))}
             </ComboboxList>
           </ComboboxPopover>
         </div>

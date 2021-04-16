@@ -8,9 +8,9 @@ import './Results.css';
 
 const fetcher = (...args) => fetch(...args).then(response => response.json());
 
-function refreshPage() {
-    window.location.reload(false);
-}
+const startOver = () => {
+    window.history.back();
+};
 
 export default function Results(props) {
     const context = useContext(PermitfulContext);
@@ -73,12 +73,12 @@ export default function Results(props) {
         })
     }
 
-    const address = props.searchAddress;
+    const address = (context.cityName === 'LAX') ? props.searchAddress.toUpperCase() : props.searchAddress;
     const addressArr = address.split(' ');
+    const hasDirection = addressArr[1] === 'North' || addressArr[1] === 'South' || addressArr[1] === 'East' || addressArr[1] === 'West';
     const addressNum = addressArr[0];
-    const addressName = addressArr[1];
-    const addressSuffix = addressArr[2].slice(0, -1);
-
+    // const addressDirection = (hasDirection) ? addressArr[1].slice(0, 1) : null;
+    const addressName = (hasDirection) ? addressArr[2] : addressArr[1];
     // fetches permits from the external API using the SWR React Hook
     const appToken = process.env.REACT_APP_SFGOV_APP_TOKEN;
     let cityURL, queryParams;
@@ -91,8 +91,8 @@ export default function Results(props) {
     }
     const url = cityURL + addressNum + "&street_name=" + addressName + "&$$app_token=" + appToken + queryParams;
     const { data, error } = useSWR(url, fetcher);
-    const results = data && !error ? data : [];
-
+    const results = data && !error && (error !== undefined) ? data : [];
+    
     // checks if the current permit selected is in the favorites list
     const checkIfFavorite = (current) => {
         const isFavorite = (favorite) => favorite === current;
@@ -127,9 +127,9 @@ export default function Results(props) {
     
     return (
         <div className="results">
-            <h1>{addressNum} {addressName} {addressSuffix}</h1>
+            <h2>{address}</h2>
             {searchResults.length > 0 ? searchResults : <p>No permits found for this address.</p>}
-            <button onClick={refreshPage} className="restart-button">Start new search</button>
+            <button onClick={startOver} className="restart-button">Start new search</button>
         </div>
     )
 }

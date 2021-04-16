@@ -2,6 +2,8 @@ import React from 'react';
 import { Email, Github } from '../../utils/Icons';
 import './Footer.css';
 
+const currentYear = new Date().getFullYear();
+
 export default function Footer() {
     return (
         <footer>
@@ -18,7 +20,7 @@ export default function Footer() {
                 </span>
             </section>
             <section className='copyright'>
-                Copyright © 2020 <a href='https://gavingrant.dev/' target='_blank' rel='noopener noreferrer' style={{color: '#000000'}}>Gavin Grant</a>
+                Copyright © 2020-{currentYear} <a href='https://gavingrant.dev/' target='_blank' rel='noopener noreferrer' style={{color: '#000000'}}>Gavin Grant</a>
             </section>
         </footer>
     )

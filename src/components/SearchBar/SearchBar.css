@@ -21,6 +21,12 @@
     border-radius: 25px;
 }
 
+.search-results {
+    display: block;
+    list-style-type: none;
+    text-align: left;
+}
+
 .limit-input {
     position: fixed;
     margin-left: auto;

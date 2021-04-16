@@ -7,7 +7,7 @@ import './NavBar.css';
 export default class NavBar extends Component {
     handleLogoutClick = () => {
         TokenService.clearAuthToken();
-        window.location.reload(false);
+        window.history.back();
         // when logging out, clear the callbacks to the refresh api and idle auto logout
         TokenService.clearCallbackBeforeExpiry()
         IdleService.unRegisterIdleResets()

@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import PermitfulContext from '../../contexts/PermitfulContext';
 import TokenService from '../../services/token-service';
 import { Link } from 'react-router-dom';
@@ -7,6 +7,10 @@ import './Landing.css';
 
 export default function Landing() {
   const context = useContext(PermitfulContext);
+  
+  useEffect(() => {
+    window.scrollTo(0, 0)
+  }, []);
 
   return (
     <section className='landing'>
@@ -19,6 +23,9 @@ export default function Landing() {
             <Link to='/map'>
               <button className='title-button' onClick={() => context.setCityName('SFO')}>
                 San Francisco
+              </button>
+              <button className='title-button' onClick={() => context.setCityName('LAX')}>
+                Los Angeles
               </button>
             </Link>
           </div>

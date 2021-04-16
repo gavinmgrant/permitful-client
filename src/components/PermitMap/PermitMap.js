@@ -130,8 +130,8 @@ export default function PermitMap() {
                   setPermitDescription(context.cityName === 'SFO' ? permit.description : permit.work_description);
                   setStatusDate(permit.status_date);
                   setPermitStatus(context.cityName === 'SFO' ? permit.status : permit.latest_status);
-                  setLat(permit.location.coordinates[1]);
-                  setLng(permit.location.coordinates[0]);
+                  setLat(context.cityName === 'SFO' ? permit.location.coordinates[1] : parseFloat(permit.location_1.latitude));
+                  setLng(context.cityName === 'SFO' ? permit.location.coordinates[0] : parseFloat(permit.location_1.longitude));
                 }}
                 position={{ 
                   lat: context.cityName === 'SFO' ? permit.location.coordinates[1] : parseFloat(permit.location_1.latitude),
