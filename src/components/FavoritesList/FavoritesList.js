@@ -60,7 +60,7 @@ export default class FavoritesList extends Component {
                 <h2>Favorites</h2>
                 <h3>{this.context.userName ? <span className="white"> Welcome back, {this.context.userName}!</span> : null}</h3>
                 <ul>
-                    {this.context.favorites.map(favorite => 
+                    {this.context.favorites.reverse().map(favorite => 
                         <li 
                             key={favorite.id}
                             className="favorite-permit-li"
