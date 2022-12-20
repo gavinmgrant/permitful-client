@@ -21,6 +21,7 @@ export default function Results(props) {
         setIsLoading(true);
         const favorited = {
             permit_number: num,
+            jurisdiction: context.cityName,
             user_id: context.userId
         }
         fetch(`${config.API_ENDPOINT}/favorites`, {

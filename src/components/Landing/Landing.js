@@ -24,9 +24,9 @@ export default function Landing() {
               <button className='title-button' onClick={() => context.setCityName('SFO')}>
                 San Francisco
               </button>
-              <button className='title-button' onClick={() => context.setCityName('LAX')}>
+              {/* <button className='title-button' onClick={() => context.setCityName('LAX')}>
                 Los Angeles
-              </button>
+              </button> */}
             </Link>
           </div>
         </div>
